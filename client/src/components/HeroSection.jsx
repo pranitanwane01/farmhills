@@ -1,5 +1,6 @@
 import React from "react";
 import heroImage from "../assets/hero.png";
+import { Link } from "react-router-dom";
 function HeroSection() {
   return (
     <section className="bg-[#F7F3EE] w-full px-6 md:px-12 py-10 md:py-20 overflow-hidden">
@@ -30,7 +31,7 @@ function HeroSection() {
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-5 mt-10">
             <button className="bg-[#9B4D0D] hover:bg-[#7A3A05] text-white px-10 py-4 rounded-full text-lg font-semibold transition duration-300 shadow-lg">
-              Shop Now
+              <Link to="/products">Shop Now</Link>
             </button>
 
             <button className="border-2 border-[#9B4D0D] text-[#9B4D0D] hover:bg-[#9B4D0D] hover:text-white px-10 py-4 rounded-full text-lg font-semibold transition duration-300">
