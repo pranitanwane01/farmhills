@@ -1,20 +1,125 @@
+// import { Routes, Route } from "react-router-dom";
+
+// // Customer Components
+// import Navbar from "./components/Navbar";
+// import HeroSection from "./components/HeroSection";
+// import Categories from "./components/Categories";
+// import BestSellers from "./components/BestSellers";
+// import OfferBanner from "./components/OfferBanner";
+// import WhyChooseUs from "./components/WhyChooseUs";
+// import Footer from "./components/Footer";
+
+// // Customer Pages
+// import About from "./pages/About";
+// import Contact from "./pages/Contact";
+// import Register from "./pages/Register";
+// import ProductDetails from "./pages/ProductDetails";
+// import AllProducts from "./pages/AllProducts";
+// import Cart from "./pages/Cart";
+// import Login from "./pages/Login";
+
+// // Protected Route
+// import ProtectedRoute from "./components/ProtectedRoute";
+
+// // Admin Routes
+// import AdminRoutes from "./admin/routes/AdminRoutes";
+
+// import Checkout from "./pages/Checkout";
+// import OrderSuccess from "./pages/OrderSuccess";
+
+// function HomePage() {
+//   return (
+//     <>
+//       <HeroSection />
+//       <Categories />
+//       <BestSellers />
+//       <OfferBanner />
+//       <WhyChooseUs />
+//     </>
+//   );
+// }
+
+// function CustomerLayout() {
+//   return (
+//     <>
+//       <Navbar />
+
+//       <Routes>
+//         <Route path="/" element={<HomePage />} />
+
+//         <Route path="/products" element={<AllProducts />} />
+
+//         <Route
+//           path="/product/:id"
+//           element={<ProductDetails />}
+//         />
+
+//         <Route
+//           path="/cart"
+//           element={
+//             <ProtectedRoute>
+//               <Cart />
+//             </ProtectedRoute>
+//           }
+//         />
+
+//         <Route path="/login" element={<Login />} />
+
+//         <Route path="/register" element={<Register />} />
+
+//         <Route path="/about" element={<About />} />
+
+//         <Route path="/contact" element={<Contact />} />
+//       </Routes>
+
+//       <Footer />
+//     </>
+//   );
+// }
+
+// function App() {
+//   return (
+//     <Routes>
+
+//       {/* Customer Website */}
+//       <Route path="/*" element={<CustomerLayout />} />
+
+//       {/* Admin Dashboard */}
+//       <Route path="/admin/*" element={<AdminRoutes />} />
+
+//     </Routes>
+//   );
+// }
+
+// export default App;
+
 import { Routes, Route } from "react-router-dom";
 
+// Customer Components
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import Categories from "./components/Categories";
 import BestSellers from "./components/BestSellers";
 import OfferBanner from "./components/OfferBanner";
 import WhyChooseUs from "./components/WhyChooseUs";
-import ProtectedRoute from "./components/ProtectedRoute";
+import Footer from "./components/Footer";
+
+// Customer Pages
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Footer from "./components/Footer";
 import Register from "./pages/Register";
 import ProductDetails from "./pages/ProductDetails";
 import AllProducts from "./pages/AllProducts";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
+import Checkout from "./pages/Checkout";
+import OrderSuccess from "./pages/OrderSuccess";
+
+// Protected Route
+import ProtectedRoute from "./components/ProtectedRoute";
+
+// Admin Routes
+import AdminRoutes from "./admin/routes/AdminRoutes";
 
 function HomePage() {
   return (
@@ -24,22 +129,26 @@ function HomePage() {
       <BestSellers />
       <OfferBanner />
       <WhyChooseUs />
-      <Footer />
     </>
   );
 }
 
-function App() {
+function CustomerLayout() {
   return (
     <>
       <Navbar />
+
       <Routes>
+        {/* Home */}
         <Route path="/" element={<HomePage />} />
 
+        {/* Products */}
         <Route path="/products" element={<AllProducts />} />
 
+        {/* Product Details */}
         <Route path="/product/:id" element={<ProductDetails />} />
 
+        {/* Cart */}
         <Route
           path="/cart"
           element={
@@ -48,15 +157,46 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* Checkout */}
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Order Success */}
+        <Route path="/order-success" element={<OrderSuccess />} />
+
+        {/* Auth */}
         <Route path="/login" element={<Login />} />
 
         <Route path="/register" element={<Register />} />
 
+        {/* About */}
         <Route path="/about" element={<About />} />
 
+        {/* Contact */}
         <Route path="/contact" element={<Contact />} />
       </Routes>
+
+      <Footer />
     </>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      {/* Customer Website */}
+      <Route path="/*" element={<CustomerLayout />} />
+
+      {/* Admin Dashboard */}
+      <Route path="/admin/*" element={<AdminRoutes />} />
+    </Routes>
   );
 }
 
