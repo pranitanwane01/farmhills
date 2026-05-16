@@ -21,17 +21,48 @@ const Products = () => {
     fetchProducts();
   }, []);
 
-  const deleteHandler = async (id) => {
-    try {
-      await axios.delete(`http://localhost:8000/api/products/${id}`);
+const deleteHandler = async (id) => {
 
-      setProducts(products.filter((product) => product._id !== id));
+  try {
 
-      alert("Product Deleted");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    // GET TOKEN
+    const token =
+      localStorage.getItem(
+        "token"
+      );
+
+    await axios.delete(
+      `http://localhost:8000/api/products/${id}`,
+      {
+        headers: {
+          Authorization:
+            `Bearer ${token}`,
+        },
+      }
+    );
+
+    setProducts(
+      products.filter(
+        (product) =>
+          product._id !== id
+      )
+    );
+
+    alert(
+      "Product Deleted"
+    );
+
+  } catch (error) {
+
+    console.log(error);
+
+    alert(
+      error.response?.data?.message ||
+      "Delete Failed"
+    );
+
+  }
+};
 
   return (
     <div>

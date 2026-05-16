@@ -1,3 +1,27 @@
+// const express = require("express");
+
+// const router = express.Router();
+
+// const {
+//   getProducts,
+//   createProduct,
+//   deleteProduct,
+//   getSingleProduct,
+//   updateProduct,
+// } = require("../controllers/productController");
+
+// router.get("/", getProducts);
+
+// router.post("/", createProduct);
+
+// router.get("/:id", getSingleProduct);
+
+// router.put("/:id", updateProduct);
+
+// router.delete("/:id", deleteProduct);
+
+// module.exports = router;
+
 const express = require("express");
 
 const router = express.Router();
@@ -10,14 +34,48 @@ const {
   updateProduct,
 } = require("../controllers/productController");
 
-router.get("/", getProducts);
+// IMPORT MIDDLEWARE
+const {
+  protect,
+  admin,
+} = require(
+  "../middleware/authMiddleware"
+);
 
-router.post("/", createProduct);
+// GET ALL PRODUCTS
+router.get(
+  "/",
+  getProducts
+);
 
-router.get("/:id", getSingleProduct);
+// CREATE PRODUCT
+router.post(
+  "/",
+  protect,
+  admin,
+  createProduct
+);
 
-router.put("/:id", updateProduct);
+// GET SINGLE PRODUCT
+router.get(
+  "/:id",
+  getSingleProduct
+);
 
-router.delete("/:id", deleteProduct);
+// UPDATE PRODUCT
+router.put(
+  "/:id",
+  protect,
+  admin,
+  updateProduct
+);
+
+// DELETE PRODUCT
+router.delete(
+  "/:id",
+  protect,
+  admin,
+  deleteProduct
+);
 
 module.exports = router;

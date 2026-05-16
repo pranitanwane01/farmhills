@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, {
   useState,
   useContext,
@@ -43,36 +44,40 @@ function Login() {
 
   // HANDLE LOGIN
 
-  const handleSubmit = (e) => {
+ const handleSubmit = async (e) => {
 
-    e.preventDefault();
+  e.preventDefault();
 
-    // GET REGISTERED USER
+  try {
 
-    const savedUser = JSON.parse(
-      localStorage.getItem("user")
+    const { data } = await axios.post(
+      "http://localhost:8000/api/auth/login",
+      formData
     );
 
-    // CHECK USER
+    // LOGIN USER
+    login(data);
 
-    if (
-      savedUser &&
-      savedUser.email === formData.email &&
-      savedUser.password ===
-        formData.password
-    ) {
+    // SAVE TOKEN
+    localStorage.setItem(
+      "token",
+      data.token
+    );
 
-      login(savedUser);
+    // REDIRECT
+    navigate("/");
 
-      navigate("/");
+  } catch (error) {
 
-    } else {
+    console.log(error);
 
-      alert("Invalid Email or Password");
+    alert(
+      error.response?.data?.message ||
+      "Login Failed"
+    );
 
-    }
-
-  };
+  }
+};
 
   return (
 

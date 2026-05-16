@@ -1,23 +1,286 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+
+// import axios from "axios";
+
+// const Orders = () => {
+
+//   const [orders, setOrders] = useState([]);
+
+//   // Fetch Orders
+//   useEffect(() => {
+
+//     const fetchOrders = async () => {
+
+//       try {
+
+//         const { data } = await axios.get(
+//           "http://localhost:8000/api/orders"
+//         );
+
+//         setOrders(data);
+
+//       } catch (error) {
+
+//         console.log(error);
+
+//       }
+//     };
+
+//     fetchOrders();
+
+//   }, []);
+
+//   // Update Order Status
+//   const updateStatus = async (id, status) => {
+
+//     try {
+
+//       const { data } = await axios.put(
+//         `http://localhost:8000/api/orders/${id}`,
+//         {
+//           orderStatus: status,
+//         }
+//       );
+
+//       setOrders(
+//         orders.map((order) =>
+//           order._id === id
+//             ? data
+//             : order
+//         )
+//       );
+
+//       alert("Order Status Updated");
+
+//     } catch (error) {
+
+//       console.log(error);
+
+//     }
+//   };
+
+//   return (
+//     <div>
+
+//       <h1 className="text-3xl font-bold mb-8">
+//         Orders
+//       </h1>
+
+//       <div className="bg-white rounded-2xl shadow overflow-x-auto">
+
+//         <table className="w-full text-left">
+
+//           <thead className="bg-gray-100">
+
+//             <tr>
+
+//               <th className="py-4 px-4">
+//                 Customer
+//               </th>
+
+//               <th className="py-4 px-4">
+//                 Phone
+//               </th>
+
+//               <th className="py-4 px-4">
+//                 Amount
+//               </th>
+
+//               <th className="py-4 px-4">
+//                 Payment
+//               </th>
+
+//               <th className="py-4 px-4">
+//                 Status
+//               </th>
+
+//             </tr>
+
+//           </thead>
+
+//           <tbody>
+
+//             {orders.map((order) => (
+
+//               <tr
+//                 key={order._id}
+//                 className="border-b hover:bg-gray-50"
+//               >
+
+//                 {/* Customer */}
+//                 <td className="py-4 px-4">
+//                   {order.customerName}
+//                 </td>
+
+//                 {/* Phone */}
+//                 <td className="py-4 px-4">
+//                   {order.customerPhone}
+//                 </td>
+
+//                 {/* Amount */}
+//                 <td className="py-4 px-4">
+//                   ₹{order.totalAmount}
+//                 </td>
+
+//                 {/* Payment Status */}
+//                 <td className="py-4 px-4">
+
+//                   <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
+
+//                     {order.paymentStatus}
+
+//                   </span>
+
+//                 </td>
+
+//                 {/* Order Status */}
+//                 <td className="py-4 px-4">
+
+//                   <select
+//                     value={order.orderStatus}
+//                     onChange={(e) =>
+//                       updateStatus(
+//                         order._id,
+//                         e.target.value
+//                       )
+//                     }
+//                     className="border p-2 rounded-lg outline-none"
+//                   >
+
+//                     <option value="Processing">
+//                       Processing
+//                     </option>
+
+//                     <option value="Shipped">
+//                       Shipped
+//                     </option>
+
+//                     <option value="Delivered">
+//                       Delivered
+//                     </option>
+
+//                     <option value="Cancelled">
+//                       Cancelled
+//                     </option>
+
+//                   </select>
+
+//                 </td>
+
+//               </tr>
+
+//             ))}
+
+//           </tbody>
+
+//         </table>
+
+//       </div>
+
+//     </div>
+//   );
+// };
+
+// export default Orders;
+
+
+import React, {
+  useEffect,
+  useState,
+} from "react";
 
 import axios from "axios";
 
 const Orders = () => {
 
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] =
+    useState([]);
 
-  // Fetch Orders
+  const [loading, setLoading] =
+    useState(true);
+
+  // FETCH ORDERS
   useEffect(() => {
 
-    const fetchOrders = async () => {
+    const fetchOrders =
+      async () => {
+
+        try {
+
+          const token =
+            localStorage.getItem(
+              "token"
+            );
+
+          const { data } =
+            await axios.get(
+              "http://localhost:8000/api/orders",
+              {
+                headers: {
+                  Authorization:
+                    `Bearer ${token}`,
+                },
+              }
+            );
+
+          setOrders(data);
+
+          setLoading(false);
+
+        } catch (error) {
+
+          console.log(error);
+
+          setLoading(false);
+
+        }
+      };
+
+    fetchOrders();
+
+  }, []);
+
+  // UPDATE STATUS
+  const updateStatus =
+    async (
+      id,
+      status
+    ) => {
 
       try {
 
-        const { data } = await axios.get(
-          "http://localhost:8000/api/orders"
+        const token =
+          localStorage.getItem(
+            "token"
+          );
+
+        const { data } =
+          await axios.put(
+            `http://localhost:8000/api/orders/${id}`,
+            {
+              orderStatus:
+                status,
+            },
+            {
+              headers: {
+                Authorization:
+                  `Bearer ${token}`,
+              },
+            }
+          );
+
+        setOrders(
+          orders.map(
+            (order) =>
+              order._id === id
+                ? data
+                : order
+          )
         );
 
-        setOrders(data);
+        alert(
+          "Order Status Updated"
+        );
 
       } catch (error) {
 
@@ -26,154 +289,211 @@ const Orders = () => {
       }
     };
 
-    fetchOrders();
+  // LOADING
+  if (loading) {
 
-  }, []);
+    return (
 
-  // Update Order Status
-  const updateStatus = async (id, status) => {
+      <div className="flex items-center justify-center min-h-screen">
 
-    try {
+        <h1 className="text-3xl font-bold">
 
-      const { data } = await axios.put(
-        `http://localhost:8000/api/orders/${id}`,
-        {
-          orderStatus: status,
-        }
-      );
+          Loading Orders...
 
-      setOrders(
-        orders.map((order) =>
-          order._id === id
-            ? data
-            : order
-        )
-      );
+        </h1>
 
-      alert("Order Status Updated");
+      </div>
 
-    } catch (error) {
-
-      console.log(error);
-
-    }
-  };
+    );
+  }
 
   return (
+
     <div>
 
-      <h1 className="text-3xl font-bold mb-8">
-        Orders
+      {/* TITLE */}
+      <h1 className="text-4xl font-bold mb-10">
+
+        Orders Management
+
       </h1>
 
-      <div className="bg-white rounded-2xl shadow overflow-x-auto">
+      {/* NO ORDERS */}
+      {orders.length === 0 && (
 
-        <table className="w-full text-left">
+        <div className="bg-white p-10 rounded-3xl shadow text-center">
 
-          <thead className="bg-gray-100">
+          <h2 className="text-3xl font-bold">
 
-            <tr>
+            No Orders Found
 
-              <th className="py-4 px-4">
-                Customer
-              </th>
+          </h2>
 
-              <th className="py-4 px-4">
-                Phone
-              </th>
+        </div>
 
-              <th className="py-4 px-4">
-                Amount
-              </th>
+      )}
 
-              <th className="py-4 px-4">
-                Payment
-              </th>
+      {/* ORDERS */}
+      <div className="space-y-8">
 
-              <th className="py-4 px-4">
-                Status
-              </th>
+        {orders.map((order) => (
 
-            </tr>
+          <div
+            key={order._id}
+            className="bg-white rounded-3xl shadow-lg p-8"
+          >
 
-          </thead>
+            {/* TOP */}
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
 
-          <tbody>
+              <div>
 
-            {orders.map((order) => (
+                <h2 className="text-2xl font-bold">
 
-              <tr
-                key={order._id}
-                className="border-b hover:bg-gray-50"
-              >
-
-                {/* Customer */}
-                <td className="py-4 px-4">
                   {order.customerName}
-                </td>
 
-                {/* Phone */}
-                <td className="py-4 px-4">
+                </h2>
+
+                <p className="text-gray-600 mt-2">
+
                   {order.customerPhone}
-                </td>
 
-                {/* Amount */}
-                <td className="py-4 px-4">
-                  ₹{order.totalAmount}
-                </td>
+                </p>
 
-                {/* Payment Status */}
-                <td className="py-4 px-4">
+                <p className="text-gray-600 mt-2">
 
-                  <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
+                  {order.shippingAddress}
 
-                    {order.paymentStatus}
+                </p>
 
-                  </span>
+              </div>
 
-                </td>
+              {/* STATUS */}
+              <div className="flex flex-col gap-4">
 
-                {/* Order Status */}
-                <td className="py-4 px-4">
+                {/* PAYMENT */}
+                <span className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold text-center">
 
-                  <select
-                    value={order.orderStatus}
-                    onChange={(e) =>
-                      updateStatus(
-                        order._id,
-                        e.target.value
-                      )
-                    }
-                    className="border p-2 rounded-lg outline-none"
+                  Payment:
+                  {" "}
+                  {order.paymentStatus}
+
+                </span>
+
+                {/* STATUS SELECT */}
+                <select
+                  value={
+                    order.orderStatus
+                  }
+                  onChange={(e) =>
+                    updateStatus(
+                      order._id,
+                      e.target.value
+                    )
+                  }
+                  className="border p-3 rounded-xl"
+                >
+
+                  <option value="Processing">
+
+                    Processing
+
+                  </option>
+
+                  <option value="Shipped">
+
+                    Shipped
+
+                  </option>
+
+                  <option value="Delivered">
+
+                    Delivered
+
+                  </option>
+
+                  <option value="Cancelled">
+
+                    Cancelled
+
+                  </option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+            {/* PRODUCTS */}
+            <div className="space-y-6">
+
+              {order.products.map(
+                (item, index) => (
+
+                  <div
+                    key={index}
+                    className="flex items-center gap-6 border-b pb-6"
                   >
 
-                    <option value="Processing">
-                      Processing
-                    </option>
+                    {/* IMAGE */}
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-24 h-24 object-cover rounded-2xl"
+                    />
 
-                    <option value="Shipped">
-                      Shipped
-                    </option>
+                    {/* INFO */}
+                    <div className="flex-1">
 
-                    <option value="Delivered">
-                      Delivered
-                    </option>
+                      <h3 className="text-2xl font-bold">
 
-                    <option value="Cancelled">
-                      Cancelled
-                    </option>
+                        {item.name}
 
-                  </select>
+                      </h3>
 
-                </td>
+                      <p className="text-gray-600 mt-2">
 
-              </tr>
+                        Quantity:
+                        {" "}
+                        {item.quantity}
 
-            ))}
+                      </p>
 
-          </tbody>
+                      <p className="text-yellow-600 text-xl font-bold mt-2">
 
-        </table>
+                        ₹{item.price}
+
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                )
+              )}
+
+            </div>
+
+            {/* TOTAL */}
+            <div className="flex justify-between items-center mt-8">
+
+              <h2 className="text-3xl font-bold">
+
+                Total Amount
+
+              </h2>
+
+              <h2 className="text-3xl font-bold text-yellow-600">
+
+                ₹{order.totalAmount}
+
+              </h2>
+
+            </div>
+
+          </div>
+
+        ))}
 
       </div>
 

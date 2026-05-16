@@ -1,3 +1,4 @@
+
 import React, {
   useState,
   useContext,
@@ -10,10 +11,9 @@ import {
   useNavigate,
 } from "react-router-dom";
 
-import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-import products from "../data/products";
+import axios from "axios";
 
 import { CartContext } from "../context/CartContext";
 
@@ -35,41 +35,61 @@ function ProductDetails() {
   const { addToCart } =
     useContext(CartContext);
 
-  // QUANTITY
+  // PRODUCT STATE
+  const [product, setProduct] =
+    useState(null);
 
+  // RELATED PRODUCTS
+  const [relatedProducts, setRelatedProducts] =
+    useState([]);
+
+  // QUANTITY
   const [quantity, setQuantity] =
     useState(1);
 
   // SELECTED WEIGHT
-
   const [selectedWeight, setSelectedWeight] =
     useState("250g");
 
-  // FIND PRODUCT
-
-  const product = products.find(
-    (item) => item.id === Number(id)
-  );
-
-  // PRODUCT NOT FOUND
-
-  if (!product) {
-
-    return (
-
-      <h1 className="text-4xl font-bold text-center mt-20">
-
-        Product Not Found
-
-      </h1>
-
-    );
-
-  }
-
-  // RESET WHEN PRODUCT CHANGES
-
+  // FETCH PRODUCT
   useEffect(() => {
+
+    const fetchProduct = async () => {
+
+      try {
+
+        // SINGLE PRODUCT
+        const { data } = await axios.get(
+          `http://localhost:8000/api/products/${id}`
+        );
+
+        setProduct(data);
+
+        // ALL PRODUCTS
+        const productsRes =
+          await axios.get(
+            "http://localhost:8000/api/products"
+          );
+
+        // RELATED PRODUCTS
+        const filteredProducts =
+          productsRes.data.filter(
+            (item) =>
+              item._id !== data._id
+          );
+
+        setRelatedProducts(
+          filteredProducts.slice(0, 3)
+        );
+
+      } catch (error) {
+
+        console.log(error);
+
+      }
+    };
+
+    fetchProduct();
 
     setSelectedWeight("250g");
 
@@ -77,16 +97,25 @@ function ProductDetails() {
 
   }, [id]);
 
-  // RELATED PRODUCTS
+  // LOADING
+  if (!product) {
 
-  const relatedProducts =
-    products.filter(
-      (item) =>
-        item.id !== product.id
+    return (
+
+      <div className="min-h-screen flex items-center justify-center">
+
+        <h1 className="text-3xl font-bold">
+
+          Loading...
+
+        </h1>
+
+      </div>
+
     );
+  }
 
   // WEIGHT PRICES
-
   const weightPrices = {
 
     "250g": product.price,
@@ -98,17 +127,14 @@ function ProductDetails() {
   };
 
   // CURRENT PRICE
-
   const currentPrice =
     weightPrices[selectedWeight];
 
   // TOTAL PRICE
-
   const totalPrice =
     currentPrice * quantity;
 
   // INCREASE QUANTITY
-
   const increaseQuantity = () => {
 
     setQuantity(quantity + 1);
@@ -116,7 +142,6 @@ function ProductDetails() {
   };
 
   // DECREASE QUANTITY
-
   const decreaseQuantity = () => {
 
     if (quantity > 1) {
@@ -124,23 +149,16 @@ function ProductDetails() {
       setQuantity(quantity - 1);
 
     }
-
   };
 
   // BUY NOW
-
   const handleBuyNow = () => {
 
     addToCart({
-
       ...product,
-
       quantity,
-
       selectedWeight,
-
       price: currentPrice,
-
     });
 
     navigate("/cart");
@@ -155,15 +173,12 @@ function ProductDetails() {
         <div className="max-w-7xl mx-auto">
 
           {/* PRODUCT SECTION */}
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
             {/* LEFT IMAGE */}
-
             <div className="relative bg-gradient-to-br from-[#EFE2C8] to-[#F8F4EC] rounded-[40px] p-10 shadow-2xl overflow-hidden">
 
               {/* BADGE */}
-
               <div className="absolute top-6 left-6 bg-[#9B4D0D] text-white px-5 py-2 rounded-full flex items-center gap-2 shadow-lg">
 
                 <BadgeCheck size={18} />
@@ -173,7 +188,6 @@ function ProductDetails() {
               </div>
 
               {/* IMAGE */}
-
               <img
                 src={product.image}
                 alt={product.name}
@@ -183,11 +197,9 @@ function ProductDetails() {
             </div>
 
             {/* RIGHT CONTENT */}
-
             <div>
 
               {/* CATEGORY */}
-
               <p className="uppercase tracking-[4px] text-[#9B4D0D] font-semibold text-sm">
 
                 {product.category}
@@ -195,7 +207,6 @@ function ProductDetails() {
               </p>
 
               {/* NAME */}
-
               <h1 className="text-5xl md:text-6xl font-bold text-[#2B1408] mt-4 leading-tight">
 
                 {product.name}
@@ -203,7 +214,6 @@ function ProductDetails() {
               </h1>
 
               {/* RATING */}
-
               <div className="flex items-center gap-3 mt-6">
 
                 <div className="flex items-center gap-1">
@@ -215,7 +225,7 @@ function ProductDetails() {
 
                   <span className="text-lg font-semibold text-[#2B1408]">
 
-                    {product.rating}
+                    4.8
 
                   </span>
 
@@ -223,14 +233,13 @@ function ProductDetails() {
 
                 <p className="text-[#7B6252]">
 
-                  ({product.reviews || 120} Reviews)
+                  (120 Reviews)
 
                 </p>
 
               </div>
 
               {/* PRICE */}
-
               <div className="mt-8 flex items-center gap-5 flex-wrap">
 
                 <h2 className="text-5xl font-bold text-[#9B4D0D]">
@@ -248,7 +257,6 @@ function ProductDetails() {
               </div>
 
               {/* DESCRIPTION */}
-
               <p className="text-[#7B6252] text-lg leading-relaxed mt-8">
 
                 {product.description}
@@ -256,7 +264,6 @@ function ProductDetails() {
               </p>
 
               {/* WEIGHT OPTIONS */}
-
               <div className="mt-10">
 
                 <p className="text-[#2B1408] font-semibold text-xl mb-5">
@@ -278,10 +285,9 @@ function ProductDetails() {
                         className={`px-8 py-4 rounded-2xl border-2 font-bold text-lg transition duration-300 shadow-md
 
                         ${
-                          selectedWeight ===
-                          weight
-                            ? "bg-[#9B4D0D] text-white border-[#9B4D0D] scale-105"
-                            : "bg-white border-[#9B4D0D] text-[#9B4D0D] hover:bg-[#9B4D0D] hover:text-white"
+                          selectedWeight === weight
+                            ? "bg-[#9B4D0D] text-white border-[#9B4D0D]"
+                            : "bg-white border-[#9B4D0D] text-[#9B4D0D]"
                         }
                         `}
                       >
@@ -298,7 +304,6 @@ function ProductDetails() {
               </div>
 
               {/* QUANTITY */}
-
               <div className="mt-10">
 
                 <p className="text-[#2B1408] font-semibold text-lg mb-4">
@@ -307,67 +312,50 @@ function ProductDetails() {
 
                 </p>
 
-                <div className="flex items-center gap-5">
+                <div className="flex items-center border border-gray-300 rounded-full overflow-hidden bg-white shadow-md w-fit">
 
-                  <div className="flex items-center border border-gray-300 rounded-full overflow-hidden bg-white shadow-md">
+                  <button
+                    onClick={decreaseQuantity}
+                    className="px-5 py-3 text-2xl hover:bg-gray-100"
+                  >
 
-                    {/* DECREASE */}
+                    -
 
-                    <button
-                      onClick={decreaseQuantity}
-                      className="px-5 py-3 text-2xl hover:bg-gray-100 transition"
-                    >
+                  </button>
 
-                      -
+                  <span className="px-6 text-lg font-semibold">
 
-                    </button>
+                    {quantity}
 
-                    {/* QUANTITY */}
+                  </span>
 
-                    <span className="px-6 text-lg font-semibold">
+                  <button
+                    onClick={increaseQuantity}
+                    className="px-5 py-3 text-2xl hover:bg-gray-100"
+                  >
 
-                      {quantity}
+                    +
 
-                    </span>
-
-                    {/* INCREASE */}
-
-                    <button
-                      onClick={increaseQuantity}
-                      className="px-5 py-3 text-2xl hover:bg-gray-100 transition"
-                    >
-
-                      +
-
-                    </button>
-
-                  </div>
+                  </button>
 
                 </div>
 
               </div>
 
               {/* BUTTONS */}
-
               <div className="flex flex-col sm:flex-row gap-5 mt-12">
 
                 {/* ADD TO CART */}
-
                 <button
                   onClick={() =>
                     addToCart({
-
                       ...product,
-
                       quantity,
-
                       selectedWeight,
-
                       price: currentPrice,
-
                     })
                   }
-                  className="flex-1 flex items-center justify-center gap-3 bg-[#9B4D0D] hover:bg-[#7A3A05] text-white px-10 py-5 rounded-2xl text-lg font-bold transition duration-300 shadow-xl hover:scale-105"
+                  className="flex-1 flex items-center justify-center gap-3 bg-[#9B4D0D] hover:bg-[#7A3A05] text-white px-10 py-5 rounded-2xl text-lg font-bold transition"
                 >
 
                   <ShoppingCart size={24} />
@@ -377,10 +365,9 @@ function ProductDetails() {
                 </button>
 
                 {/* BUY NOW */}
-
                 <button
                   onClick={handleBuyNow}
-                  className="flex-1 flex items-center justify-center gap-3 bg-black hover:bg-gray-900 text-white px-10 py-5 rounded-2xl text-lg font-bold transition duration-300 shadow-xl hover:scale-105"
+                  className="flex-1 flex items-center justify-center gap-3 bg-black hover:bg-gray-900 text-white px-10 py-5 rounded-2xl text-lg font-bold transition"
                 >
 
                   <Zap size={24} />
@@ -391,70 +378,11 @@ function ProductDetails() {
 
               </div>
 
-              {/* FEATURES */}
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-14">
-
-                <div className="flex items-center gap-5 bg-white p-6 rounded-3xl shadow-lg hover:-translate-y-1 transition">
-
-                  <div className="bg-[#F5F3F0] p-4 rounded-2xl">
-
-                    <Truck className="text-[#9B4D0D]" />
-
-                  </div>
-
-                  <div>
-
-                    <p className="font-bold text-[#2B1408] text-lg">
-
-                      Free Delivery
-
-                    </p>
-
-                    <p className="text-[#7B6252]">
-
-                      On orders above ₹999
-
-                    </p>
-
-                  </div>
-
-                </div>
-
-                <div className="flex items-center gap-5 bg-white p-6 rounded-3xl shadow-lg hover:-translate-y-1 transition">
-
-                  <div className="bg-[#F5F3F0] p-4 rounded-2xl">
-
-                    <ShieldCheck className="text-[#9B4D0D]" />
-
-                  </div>
-
-                  <div>
-
-                    <p className="font-bold text-[#2B1408] text-lg">
-
-                      Quality Assured
-
-                    </p>
-
-                    <p className="text-[#7B6252]">
-
-                      100% premium products
-
-                    </p>
-
-                  </div>
-
-                </div>
-
-              </div>
-
             </div>
 
           </div>
 
           {/* RELATED PRODUCTS */}
-
           <div className="mt-24">
 
             <h2 className="text-4xl font-bold text-[#2B1408] mb-10">
@@ -468,8 +396,8 @@ function ProductDetails() {
               {relatedProducts.map((item) => (
 
                 <Link
-                  key={item.id}
-                  to={`/product/${item.id}`}
+                  key={item._id}
+                  to={`/product/${item._id}`}
                 >
 
                   <div className="bg-white rounded-[30px] overflow-hidden shadow-lg hover:-translate-y-2 transition duration-300 group">

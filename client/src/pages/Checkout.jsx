@@ -1,33 +1,23 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 
-const Checkout = () => {
+import { CartContext } from "../context/CartContext";
 
+const Checkout = () => {
   const navigate = useNavigate();
 
-  // Dummy Cart Products
-  const cartProducts = [
-    {
-      _id: "1",
-      name: "Premium Almonds",
-      quantity: 2,
-      price: 850,
-      image:
-        "https://images.unsplash.com/photo-1508747703725-719777637510",
-    },
-  ];
+  const { cartItems, clearCart } = useContext(CartContext);
 
-  // Total Amount
-  const totalAmount = cartProducts.reduce(
-    (acc, item) =>
-      acc + item.price * item.quantity,
-    0
+  // TOTAL AMOUNT
+  const totalAmount = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0,
   );
 
-  // Form State
+  // FORM STATE
   const [formData, setFormData] = useState({
     customerName: "",
     customerPhone: "",
@@ -35,72 +25,79 @@ const Checkout = () => {
     paymentMethod: "COD",
   });
 
-  // Handle Change
+  // HANDLE CHANGE
   const handleChange = (e) => {
-
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
-
   };
 
-  // Place Order
+  // PLACE ORDER
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
     try {
-
+      // ORDER DATA
       const orderData = {
         ...formData,
-        products: cartProducts,
+
+        products: cartItems.map((item) => ({
+          productId: item._id,
+          name: item.name,
+          quantity: item.quantity,
+          price: item.price,
+          image: item.image,
+        })),
+
         totalAmount,
       };
 
-      await axios.post(
-        "http://localhost:8000/api/orders",
-        orderData
-      );
+      // GET TOKEN
+      const token = localStorage.getItem("token");
+
+      // CREATE ORDER
+      await axios.post("http://localhost:8000/api/orders", orderData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      // CLEAR CART
+      clearCart();
 
       alert("Order Placed Successfully");
 
       navigate("/order-success");
-
     } catch (error) {
-
       console.log(error);
 
+      alert(error.response?.data?.message || "Something went wrong");
     }
   };
 
+  // EMPTY CART
+  if (cartItems.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <h1 className="text-3xl font-bold">Your Cart Is Empty</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-6xl mx-auto p-5">
-
-      <h1 className="text-3xl font-bold mb-8">
-        Checkout
-      </h1>
+      <h1 className="text-3xl font-bold mb-8">Checkout</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-
-        {/* Checkout Form */}
+        {/* CHECKOUT FORM */}
         <div className="bg-white p-8 rounded-2xl shadow">
+          <h2 className="text-2xl font-semibold mb-6">Shipping Details</h2>
 
-          <h2 className="text-2xl font-semibold mb-6">
-            Shipping Details
-          </h2>
-
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-5"
-          >
-
-            {/* Name */}
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {/* NAME */}
             <div>
-
-              <label className="block mb-2 font-medium">
-                Full Name
-              </label>
+              <label className="block mb-2 font-medium">Full Name</label>
 
               <input
                 type="text"
@@ -111,15 +108,11 @@ const Checkout = () => {
                 className="w-full border p-3 rounded-xl outline-none"
                 required
               />
-
             </div>
 
-            {/* Phone */}
+            {/* PHONE */}
             <div>
-
-              <label className="block mb-2 font-medium">
-                Phone Number
-              </label>
+              <label className="block mb-2 font-medium">Phone Number</label>
 
               <input
                 type="text"
@@ -130,15 +123,11 @@ const Checkout = () => {
                 className="w-full border p-3 rounded-xl outline-none"
                 required
               />
-
             </div>
 
-            {/* Address */}
+            {/* ADDRESS */}
             <div>
-
-              <label className="block mb-2 font-medium">
-                Shipping Address
-              </label>
+              <label className="block mb-2 font-medium">Shipping Address</label>
 
               <textarea
                 rows="5"
@@ -149,15 +138,11 @@ const Checkout = () => {
                 className="w-full border p-3 rounded-xl outline-none"
                 required
               />
-
             </div>
 
-            {/* Payment */}
+            {/* PAYMENT */}
             <div>
-
-              <label className="block mb-2 font-medium">
-                Payment Method
-              </label>
+              <label className="block mb-2 font-medium">Payment Method</label>
 
               <select
                 name="paymentMethod"
@@ -165,47 +150,32 @@ const Checkout = () => {
                 onChange={handleChange}
                 className="w-full border p-3 rounded-xl outline-none"
               >
+                <option value="COD">Cash On Delivery</option>
 
-                <option value="COD">
-                  Cash On Delivery
-                </option>
-
-                <option value="Online">
-                  Online Payment
-                </option>
-
+                <option value="Online">Online Payment</option>
               </select>
-
             </div>
 
-            {/* Button */}
+            {/* BUTTON */}
             <button
               type="submit"
               className="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-3 rounded-xl text-lg"
             >
               Place Order
             </button>
-
           </form>
-
         </div>
 
-        {/* Order Summary */}
+        {/* ORDER SUMMARY */}
         <div className="bg-white p-8 rounded-2xl shadow h-fit">
-
-          <h2 className="text-2xl font-semibold mb-6">
-            Order Summary
-          </h2>
+          <h2 className="text-2xl font-semibold mb-6">Order Summary</h2>
 
           <div className="space-y-5">
-
-            {cartProducts.map((item) => (
-
+            {cartItems.map((item) => (
               <div
                 key={item._id}
                 className="flex items-center gap-4 border-b pb-4"
               >
-
                 <img
                   src={item.image}
                   alt={item.name}
@@ -213,46 +183,26 @@ const Checkout = () => {
                 />
 
                 <div className="flex-1">
+                  <h3 className="font-semibold">{item.name}</h3>
 
-                  <h3 className="font-semibold">
-                    {item.name}
-                  </h3>
+                  <p>Quantity: {item.quantity}</p>
 
-                  <p>
-                    Quantity: {item.quantity}
-                  </p>
-
-                  <p>
-                    ₹{item.price}
-                  </p>
-
+                  <p>₹{item.price}</p>
                 </div>
-
               </div>
-
             ))}
-
           </div>
 
-          {/* Total */}
+          {/* TOTAL */}
           <div className="mt-6 border-t pt-6">
-
             <div className="flex justify-between text-xl font-bold">
-
               <span>Total</span>
 
-              <span>
-                ₹{totalAmount}
-              </span>
-
+              <span>₹{totalAmount}</span>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
   );
 };

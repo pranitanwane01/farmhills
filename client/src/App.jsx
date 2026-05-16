@@ -115,6 +115,8 @@ import Login from "./pages/Login";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
 
+import MyOrders from "./pages/MyOrders";
+
 // Protected Route
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -164,6 +166,15 @@ function CustomerLayout() {
           element={
             <ProtectedRoute>
               <Checkout />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/my-orders"
+          element={
+            <ProtectedRoute>
+              <MyOrders />
             </ProtectedRoute>
           }
         />

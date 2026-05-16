@@ -1,3 +1,21 @@
+// const express = require("express");
+
+// const router = express.Router();
+
+// const {
+//   createOrder,
+//   getOrders,
+//   updateOrderStatus,
+// } = require("../controllers/orderController");
+
+// router.post("/", createOrder);
+
+// router.get("/", getOrders);
+
+// router.put("/:id", updateOrderStatus);
+
+// module.exports = router;
+
 const express = require("express");
 
 const router = express.Router();
@@ -5,13 +23,49 @@ const router = express.Router();
 const {
   createOrder,
   getOrders,
+  getMyOrders,
   updateOrderStatus,
-} = require("../controllers/orderController");
+  
+} = require(
+  "../controllers/orderController"
+);
 
-router.post("/", createOrder);
+// AUTH MIDDLEWARE
+const {
+  protect,
+  admin,
+} = require(
+  "../middleware/authMiddleware"
+);
 
-router.get("/", getOrders);
+// CREATE ORDER
+router.post(
+  "/",
+  protect,
+  createOrder
+);
 
-router.put("/:id", updateOrderStatus);
+// USER ORDERS
+router.get(
+  "/my-orders",
+  protect,
+  getMyOrders
+);
+
+// ADMIN GET ALL ORDERS
+router.get(
+  "/",
+  protect,
+  admin,
+  getOrders
+);
+
+// ADMIN UPDATE ORDER STATUS
+router.put(
+  "/:id",
+  protect,
+  admin,
+  updateOrderStatus
+);
 
 module.exports = router;

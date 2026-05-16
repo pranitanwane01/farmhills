@@ -1,3 +1,5 @@
+
+import axios from "axios";
 import React, {
   useState,
   useContext,
@@ -11,7 +13,9 @@ function Register() {
 
   const navigate = useNavigate();
 
-  const { register } =
+  const { register,
+    login,
+   } =
     useContext(AuthContext);
 
   // FORM STATE
@@ -41,19 +45,40 @@ function Register() {
 
   // HANDLE SUBMIT
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
 
-    e.preventDefault();
+  e.preventDefault();
+
+  try {
+
+    const { data } = await axios.post(
+      "http://localhost:8000/api/auth/register",
+      formData
+    );
 
     // SAVE USER
+    login(data);
 
-    register(formData);
+    // SAVE TOKEN
+    localStorage.setItem(
+      "token",
+      data.token
+    );
 
     // REDIRECT
-
     navigate("/");
 
-  };
+  } catch (error) {
+
+    console.log(error);
+
+    alert(
+      error.response?.data?.message ||
+      "Registration Failed"
+    );
+
+  }
+};
 
   return (
 

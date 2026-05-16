@@ -31,6 +31,10 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+     isBestSeller: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
