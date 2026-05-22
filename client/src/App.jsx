@@ -93,9 +93,6 @@
 
 // export default App;
 
-
-
-
 import { Routes, Route } from "react-router-dom";
 
 // Customer Components
@@ -117,6 +114,7 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
+import ForgotPassword from "./pages/ForgotPassword";
 
 import MyOrders from "./pages/MyOrders";
 
@@ -195,6 +193,8 @@ function CustomerLayout() {
 
         {/* Contact */}
         <Route path="/contact" element={<Contact />} />
+
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
 
       <Footer />
@@ -215,5 +215,3 @@ function App() {
 }
 
 export default App;
-
-

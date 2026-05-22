@@ -75,85 +75,45 @@
 
 // export default AuthProvider;
 
-import React, {
-  createContext,
-  useState,
-  useEffect,
-} from "react";
+import React, { createContext, useState, useEffect } from "react";
 
-export const AuthContext =
-  createContext();
+export const AuthContext = createContext();
 
-function AuthProvider({
-  children,
-}) {
-
+function AuthProvider({ children }) {
   // USER STATE
-  const [user, setUser] =
-    useState(() => {
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem("user");
 
-      const savedUser =
-        localStorage.getItem(
-          "user"
-        );
-
-      return savedUser
-        ? JSON.parse(savedUser)
-        : null;
-
-    });
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
 
   // SAVE USER
   useEffect(() => {
-
     if (user) {
-
-      localStorage.setItem(
-        "user",
-        JSON.stringify(user)
-      );
-
+      localStorage.setItem("user", JSON.stringify(user));
     } else {
-
-      localStorage.removeItem(
-        "user"
-      );
-
+      localStorage.removeItem("user");
     }
-
   }, [user]);
 
   // LOGIN
-  const login = (
-    userData
-  ) => {
-
+  const login = (userData) => {
     setUser(userData);
-
   };
 
   // LOGOUT
   const logout = () => {
-
     setUser(null);
 
-    localStorage.removeItem(
-      "token"
-    );
-
+    localStorage.removeItem("token");
   };
 
   // REGISTER
-  const register = (
-    userData
-  ) => {
-
+  const register = (userData) => {
     setUser(userData);
-
   };
 
   return (
-
     <AuthContext.Provider
       value={{
         user,
@@ -162,11 +122,8 @@ function AuthProvider({
         register,
       }}
     >
-
       {children}
-
     </AuthContext.Provider>
-
   );
 }
 

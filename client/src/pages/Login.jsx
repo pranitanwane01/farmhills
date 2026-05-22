@@ -1,119 +1,79 @@
 import axios from "axios";
-import React, {
-  useState,
-  useContext,
-} from "react";
+import React, { useState, useContext } from "react";
 
-import {
-  Link,
-  useNavigate,
-} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../context/AuthContext";
 
 function Login() {
-
   const navigate = useNavigate();
 
-  const { login } =
-    useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   // FORM STATE
 
-  const [formData, setFormData] =
-    useState({
-
-      email: "",
-      password: "",
-
-    });
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
   // HANDLE INPUT CHANGE
 
   const handleChange = (e) => {
-
     setFormData({
-
       ...formData,
 
       [e.target.name]: e.target.value,
-
     });
-
   };
 
   // HANDLE LOGIN
 
- const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  e.preventDefault();
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8000/api/auth/login",
+        formData,
+      );
 
-  try {
+      // LOGIN USER
+      login(data);
 
-    const { data } = await axios.post(
-      "http://localhost:8000/api/auth/login",
-      formData
-    );
+      // SAVE TOKEN
+      localStorage.setItem("token", data.token);
 
-    // LOGIN USER
-    login(data);
+      // REDIRECT
+      navigate("/");
+    } catch (error) {
+      console.log(error);
 
-    // SAVE TOKEN
-    localStorage.setItem(
-      "token",
-      data.token
-    );
-
-    // REDIRECT
-    navigate("/");
-
-  } catch (error) {
-
-    console.log(error);
-
-    alert(
-      error.response?.data?.message ||
-      "Login Failed"
-    );
-
-  }
-};
+      alert(error.response?.data?.message || "Login Failed");
+    }
+  };
 
   return (
-
     <section className="min-h-screen bg-[#F5F3F0] flex items-center justify-center px-6">
-
       <div className="bg-white w-full max-w-md rounded-[30px] shadow-xl p-10">
-
         {/* TITLE */}
 
         <h1 className="text-4xl font-bold text-center text-[#2B1408] mb-3">
-
           Welcome Back
-
         </h1>
 
         <p className="text-center text-[#7B6252] mb-8">
-
           Login to continue shopping
-
         </p>
 
         {/* FORM */}
 
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-6"
-        >
-
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* EMAIL */}
 
           <div>
-
             <label className="block mb-2 font-medium text-[#2B1408]">
-
               Email Address
-
             </label>
 
             <input
@@ -125,17 +85,13 @@ function Login() {
               placeholder="Enter your email"
               className="w-full px-5 py-4 rounded-xl border border-gray-300 outline-none focus:border-[#9B4D0D]"
             />
-
           </div>
 
           {/* PASSWORD */}
 
           <div>
-
             <label className="block mb-2 font-medium text-[#2B1408]">
-
               Password
-
             </label>
 
             <input
@@ -147,7 +103,6 @@ function Login() {
               placeholder="Enter password"
               className="w-full px-5 py-4 rounded-xl border border-gray-300 outline-none focus:border-[#9B4D0D]"
             />
-
           </div>
 
           {/* BUTTON */}
@@ -156,34 +111,30 @@ function Login() {
             type="submit"
             className="w-full bg-[#9B4D0D] hover:bg-[#7A3A05] text-white py-4 rounded-xl text-lg font-semibold transition"
           >
-
             Login
-
           </button>
-
         </form>
+
+        <div className="mt-4 text-center">
+          <button
+            type="button"
+            onClick={() => navigate("/forgot-password")}
+            className="text-yellow-600 hover:underline"
+          >
+            Forgot Password?
+          </button>
+        </div>
 
         {/* REGISTER LINK */}
 
         <p className="text-center mt-8 text-[#7B6252]">
-
           Don't have an account?
-
-          <Link
-            to="/register"
-            className="text-[#9B4D0D] font-semibold ml-2"
-          >
-
+          <Link to="/register" className="text-[#9B4D0D] font-semibold ml-2">
             Register
-
           </Link>
-
         </p>
-
       </div>
-
     </section>
-
   );
 }
 
