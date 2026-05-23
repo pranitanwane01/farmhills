@@ -115,6 +115,8 @@ import Login from "./pages/Login";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
 import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+
 
 import MyOrders from "./pages/MyOrders";
 
@@ -195,6 +197,9 @@ function CustomerLayout() {
         <Route path="/contact" element={<Contact />} />
 
         <Route path="/forgot-password" element={<ForgotPassword />} />
+
+        <Route path="/reset-password" element={<ResetPassword/>}/>
+        
       </Routes>
 
       <Footer />

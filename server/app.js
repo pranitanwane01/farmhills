@@ -8,6 +8,7 @@ const paymentRoutes = require("./routes/paymentRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const userRoutes = require("./routes/userRoutes");
+const contactRoutes = require("./routes/contactRoutes");
 
 const app = express();
 
@@ -26,7 +27,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/payment", paymentRoutes);
 
 app.use("/api/upload", uploadRoutes);
+
 app.use("/api/users", userRoutes);
+
+app.use("/api/contact", contactRoutes);
 
 app.get("/", (req, res) => {
   res.send("API Running");

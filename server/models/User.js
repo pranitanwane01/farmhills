@@ -22,13 +22,18 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+
+    resetPasswordToken: String,
+
+    resetPasswordExpire: Date,
+
+    resetOtp: String,
+
+    resetOtpExpire: Date,
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-module.exports = mongoose.model(
-  "User",
-  userSchema
-);
+module.exports = mongoose.model("User", userSchema);
