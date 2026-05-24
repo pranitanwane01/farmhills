@@ -2,6 +2,11 @@ import React from 'react'
 
 import { useEffect, useState } from "react";
 
+import bannerone from "../assets/bannerone.webp";
+import bannertwo from "../assets/bannertwo.webp";
+import bannerthree from "../assets/bannerthree.webp";
+import bannerfour from "../assets/bannerfour.webp";
+
 function OfferBenner() {
 
   const slides = [
@@ -12,7 +17,7 @@ function OfferBenner() {
       desc:
         "Healthy, crunchy and naturally rich almonds directly from premium farms.",
       image:
-        "https://images.unsplash.com/photo-1508747703725-719777637510?q=80&w=1200&auto=format&fit=crop",
+        bannerone,
     },
 
     {
@@ -21,7 +26,7 @@ function OfferBenner() {
       desc:
         "Elegant dry fruit gift boxes for family, friends and corporate gifting.",
       image:
-        "https://images.unsplash.com/photo-1606923829579-0cb981a83e2a?q=80&w=1200&auto=format&fit=crop",
+        bannertwo,
     },
 
     {
@@ -30,7 +35,7 @@ function OfferBenner() {
       desc:
         "Premium quality cashews with rich taste and natural freshness.",
       image:
-        "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?q=80&w=1200&auto=format&fit=crop",
+        bannerthree,
     },
 
     {
@@ -39,7 +44,7 @@ function OfferBenner() {
       desc:
         "Daily nutrition with the finest dry fruits and nuts collection.",
       image:
-        "https://images.unsplash.com/photo-1615485925600-97237c4fc1ec?q=80&w=1200&auto=format&fit=crop",
+        bannerfour,
     },
 
   ];
@@ -82,15 +87,15 @@ function OfferBenner() {
 
           {/* DARK OVERLAY */}
 
-          <div className="absolute inset-0 bg-black/45"></div>
+          {/* <div className="absolute inset-0 bg-black/45"></div> */}
 
           {/* GLASS EFFECT */}
 
-          <div className="absolute inset-0 backdrop-blur-[2px]"></div>
+          <div className="absolute inset-0 backdrop-blur-[0px]"></div>
 
           {/* CONTENT */}
 
-          <div className="relative z-10 h-full flex items-center px-8 md:px-20">
+          {/* <div className="relative z-10 h-full flex items-center px-8 md:px-20">
 
             <div className="max-w-2xl text-white">
 
@@ -116,11 +121,11 @@ function OfferBenner() {
 
                 {slides[current].desc}
 
-              </p>
+              </p> */}
 
-              {/* BUTTONS */}
+              {/* button */}
 
-              <div className="flex flex-col sm:flex-row gap-5 mt-10">
+              {/* <div className="flex flex-col sm:flex-row gap-5 mt-10">
 
                 <button className="bg-[#9B4D0D] hover:bg-[#7A3A05] text-white px-8 py-4 rounded-full text-lg font-semibold transition duration-300">
 
@@ -134,11 +139,11 @@ function OfferBenner() {
 
                 </button>
 
-              </div>
+              </div> */}
 
-            </div>
+            {/* </div> */}
 
-          </div>
+          {/* </div> */}
 
           {/* DOTS */}
 

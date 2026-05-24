@@ -30,13 +30,17 @@ function HeroSection() {
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-5 mt-10">
-            <button className="bg-[#9B4D0D] hover:bg-[#7A3A05] text-white px-10 py-4 rounded-full text-lg font-semibold transition duration-300 shadow-lg">
-              <Link to="/products">Shop Now</Link>
-            </button>
+            <Link to="/products">
+              <button className="bg-[#9B4D0D] hover:bg-[#7A3A05] text-white px-10 py-4 rounded-full text-lg font-semibold transition duration-300 shadow-lg">
+                Shop Now
+              </button>
+            </Link>
 
-            <button className="border-2 border-[#9B4D0D] text-[#9B4D0D] hover:bg-[#9B4D0D] hover:text-white px-10 py-4 rounded-full text-lg font-semibold transition duration-300">
-              Our Story
-            </button>
+            <Link to="/about">
+              <button className="border-2 border-[#9B4D0D] text-[#9B4D0D] hover:bg-[#9B4D0D] hover:text-white px-10 py-4 rounded-full text-lg font-semibold transition duration-300">
+                Our Story
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -59,7 +63,7 @@ function HeroSection() {
             </h2>
 
             <p className="text-[#C28B2C] text-2xl mt-4 font-medium">
-              Starting ₹299 / 250g
+              Starting ₹199 / 250g
             </p>
           </div>
         </div>
