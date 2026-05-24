@@ -1,5 +1,4 @@
 
-
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/farmhillss.png";
@@ -52,6 +51,20 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (!event.target.closest(".profile-dropdown-container")) {
+      setProfileOpen(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
+
   return (
     <>
       {/* TOP HEADER */}
@@ -76,7 +89,7 @@ function Navbar() {
             {/* RIGHT */}
 
             <div className="flex items-center gap-5 text-lg">
-              {/* <a
+              <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -90,7 +103,7 @@ function Navbar() {
                 rel="noopener noreferrer"
               >
                 <FaTwitter className="cursor-pointer hover:text-gray-300 transition" />
-              </a> */}
+              </a>
 
               <a
                 href="https://instagram.com"
@@ -115,7 +128,7 @@ function Navbar() {
       {/* MAIN NAVBAR */}
 
       <nav
-        className={`w-full bg-[#F7F3EE] px-6 md:px-12 py-5 shadow-sm z-50 transition-all duration-300
+        className={`w-full bg-[#EFE2C8] px-6 md:px-12 py-5 shadow-sm z-50 transition-all duration-300
         ${isScrolled ? "fixed top-0 left-0 shadow-lg" : "relative"}
         `}
       >
@@ -186,23 +199,23 @@ function Navbar() {
             {/* AUTH */}
 
             {user ? (
-              <div className="relative">
+              <div className="relative profile-dropdown-container">
                 {/* PROFILE BUTTON */}
 
                 <button
                   onClick={() => setProfileOpen(!profileOpen)}
-                  className="flex items-center gap-3 bg-white/90 backdrop-blur-md border border-[#E8DCCF] px-4 py-2 rounded-full shadow-md hover:shadow-xl hover:-translate-y-[1px] transition-all duration-300"
+                  className="flex items-center gap-3 bg-gradient-to-br from-[#9B4D0D] to-[#C28B2C] backdrop-blur-md border border-[#E8DCCF] px-5 py-2 rounded-full shadow-md hover:shadow-xl hover:-translate-y-[1px] transition-all duration-300"
                 >
-                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#9B4D0D] to-[#C28B2C] text-white flex items-center justify-center shadow-md">
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#dfcab8] to-[#C28B2C] text-white flex items-center justify-center shadow-md hover:bg-[#7f3f08] hover:scale-105 transition-all duration-300">
                     <CircleUserRound size={22} strokeWidth={2.2} />
                   </div>
 
-                  <ChevronDown
+                  {/* <ChevronDown
                     size={18}
                     className={`transition duration-300 ${
                       profileOpen ? "rotate-180" : ""
                     }`}
-                  />
+                  /> */}
                 </button>
 
                 {/* DROPDOWN */}
@@ -213,7 +226,7 @@ function Navbar() {
 
                     <div className="bg-[#F7F3EE] p-5 border-b">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#9B4D0D] to-[#C28B2C] text-white flex items-center justify-center shadow-md">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#9B4D0D] to-[#C28B2C] text-white flex items-center justify-center shadow-md hover:bg-[#7f3f08] hover:scale-105 transition-all duration-300">
                           <CircleUserRound
                             size={26}
                             strokeWidth={2.2}
@@ -294,13 +307,13 @@ function Navbar() {
 
             <Link
               to="/cart"
-              className="relative flex items-center gap-3 bg-[#9B4D0D] text-white px-6 py-3 rounded-full text-base font-semibold shadow-lg hover:bg-[#7f3f08] hover:scale-105 transition-all duration-300"
+              className="relative flex items-center gap-3 bg-gradient-to-br from-[#9B4D0D] to-[#C28B2C] text-white px-6 py-3 rounded-full text-base font-semibold shadow-lg hover:bg-[#7f3f08] hover:scale-105 transition-all duration-300"
             >
               <ShoppingBag size={26} strokeWidth={2.2} />
 
               {/* <span className="hidden lg:block">Cart</span> */}
 
-              <span className="absolute -top-2 -right-2 bg-white text-[#9B4D0D] w-6 h-6 rounded-full text-sm font-bold flex items-center justify-center shadow-md">
+              <span className="absolute -top-1 -right-1 bg-[#e9c8ae] text-[#9B4D0D] w-4 h-4 rounded-full text-sm font-bold flex items-center justify-center shadow-md">
                 {totalItems}
               </span>
             </Link>
@@ -385,8 +398,7 @@ function Navbar() {
             <Link
               to="/cart"
               onClick={() => setMenuOpen(false)}
-              // className="relative flex items-center justify-center gap-2 bg-[#9B4D0D] text-white px-6 py-3 rounded-full font-semibold shadow-md"
-              className="w-11 h-11 rounded-full bg-gradient-to-br from-[#9B4D0D] to-[#C28B2C] text-white flex items-center justify-center"
+              className="relative flex items-center justify-center gap-2 bg-[#9B4D0D] text-white px-6 py-3 rounded-full font-semibold shadow-md"
             >
               <ShoppingBag size={20} strokeWidth={2.2} />
 
