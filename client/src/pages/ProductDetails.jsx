@@ -441,7 +441,6 @@ function ProductDetails() {
 
       </section>
 
-      <Footer />
     </>
   );
 }
