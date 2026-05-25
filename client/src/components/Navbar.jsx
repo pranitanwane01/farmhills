@@ -256,13 +256,13 @@ function Navbar() {
                         My Orders
                       </Link>
 
-                      <Link
+                      {/* <Link
                         to="/profile"
                         onClick={() => setProfileOpen(false)}
                         className="px-6 py-4 hover:bg-[#F7F3EE] transition font-medium text-[#2B1408]"
                       >
                         Account Settings
-                      </Link>
+                      </Link> */}
 
                       <Link
                         to="/contact"
