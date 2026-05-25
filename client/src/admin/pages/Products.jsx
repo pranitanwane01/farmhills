@@ -7,19 +7,28 @@ import { Link } from "react-router-dom";
 const Products = () => {
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const { data } = await axios.get`${import.meta.env.VITE_API_URL}/api/products`;
+useEffect(() => {
 
-        setProducts(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  const fetchProducts = async () => {
 
-    fetchProducts();
-  }, []);
+    try {
+
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/products`
+      );
+
+      setProducts(data);
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+  };
+
+  fetchProducts();
+
+}, []);
 
 const deleteHandler = async (id) => {
 
