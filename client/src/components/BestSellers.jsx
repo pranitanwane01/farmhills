@@ -31,9 +31,9 @@ function BestSellers() {
 
       try {
 
-        const { data } = await axios.get(
-          "http://localhost:8000/api/products"
-        );
+       const { data } = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/products`
+);
 
         // FILTER ONLY BEST SELLERS
         const bestProducts = data

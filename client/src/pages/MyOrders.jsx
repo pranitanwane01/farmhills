@@ -28,7 +28,7 @@ function MyOrders() {
 
           const { data } =
             await axios.get(
-              "http://localhost:8000/api/orders/my-orders",
+              `${import.meta.env.VITE_API_URL}/api/orders/my-orders`,
               {
                 headers: {
                   Authorization:

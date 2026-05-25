@@ -75,7 +75,7 @@ const Checkout = () => {
       // CASH ON DELIVERY
       if (formData.paymentMethod === "COD") {
         await axios.post(
-          "http://localhost:8000/api/orders",
+          `${import.meta.env.VITE_API_URL}/api/orders`,
 
           orderData,
 
@@ -97,7 +97,7 @@ const Checkout = () => {
 
       // ONLINE PAYMENT
       const { data } = await axios.post(
-        "http://localhost:8000/api/payment/create-order",
+        `${import.meta.env.VITE_API_URL}/payment/create-order`,
 
         {
           amount: totalAmount,
@@ -129,7 +129,7 @@ const Checkout = () => {
           try {
             // VERIFY PAYMENT
             const verifyRes = await axios.post(
-              "http://localhost:8000/api/payment/verify-payment",
+              `${import.meta.env.VITE_API_URL}/api/payment/verify-payment`,
 
               {
                 razorpay_order_id: response.razorpay_order_id,
@@ -150,7 +150,7 @@ const Checkout = () => {
 
               // SAVE ORDER
               const savedOrder = await axios.post(
-                "http://localhost:8000/api/orders",
+                `${import.meta.env.VITE_API_URL}/api/orders`,
 
                 {
                   ...orderData,

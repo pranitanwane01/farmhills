@@ -33,8 +33,8 @@ const EditProduct = () => {
       try {
 
         const { data } = await axios.get(
-          `http://localhost:8000/api/products/${id}`
-        );
+  `${import.meta.env.VITE_API_URL}/api/products/${id}`
+);
 
         setFormData(data);
 
@@ -72,16 +72,15 @@ const EditProduct = () => {
         "token"
       );
 
-    await axios.put(
-      `http://localhost:8000/api/products/${id}`,
-      formData,
-      {
-        headers: {
-          Authorization:
-            `Bearer ${token}`,
-        },
-      }
-    );
+  await axios.put(
+  `${import.meta.env.VITE_API_URL}/api/products/${id}`,
+  formData,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
     alert(
       "Product Updated"

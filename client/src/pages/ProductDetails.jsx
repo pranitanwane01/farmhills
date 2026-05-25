@@ -59,17 +59,16 @@ function ProductDetails() {
       try {
 
         // SINGLE PRODUCT
-        const { data } = await axios.get(
-          `http://localhost:8000/api/products/${id}`
-        );
+      const { data } = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/products/${id}`
+);
 
         setProduct(data);
 
         // ALL PRODUCTS
-        const productsRes =
-          await axios.get(
-            "http://localhost:8000/api/products"
-          );
+       await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/products`
+);
 
         // RELATED PRODUCTS
         const filteredProducts =

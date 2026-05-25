@@ -10,7 +10,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get("http://localhost:8000/api/products");
+        const { data } = await axios.get`${import.meta.env.VITE_API_URL}/api/products`;
 
         setProducts(data);
       } catch (error) {
@@ -32,7 +32,7 @@ const deleteHandler = async (id) => {
       );
 
     await axios.delete(
-      `http://localhost:8000/api/products/${id}`,
+      `${import.meta.env.VITE_API_URL}/api/products/${id}`,
       {
         headers: {
           Authorization:

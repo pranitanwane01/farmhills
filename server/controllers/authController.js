@@ -100,58 +100,6 @@ const loginUser = async (req, res) => {
   }
 };
 
-// const forgotPassword = async (req, res) => {
-//   try {
-//     const user = await User.findOne({
-//       email: req.body.email,
-//     });
-
-//     if (!user) {
-//       return res.status(404).json({
-//         message: "User not found",
-//       });
-//     }
-
-//     // GENERATE TOKEN
-//     const resetToken = crypto.randomBytes(20).toString("hex");
-
-//     user.resetPasswordToken = resetToken;
-
-//     user.resetPasswordExpire = Date.now() + 10 * 60 * 1000;
-
-//     await user.save();
-
-//     // RESET URL
-//     const resetUrl = `http://localhost:5173/reset-password/${resetToken}`;
-
-//     // SEND EMAIL
-//     await sendEmail(
-//       user.email,
-
-//       "Password Reset",
-
-//       `
-//         <h2>Reset Password</h2>
-
-//         <p>
-//           Click below link to reset password:
-//         </p>
-
-//         <a href="${resetUrl}">
-//           Reset Password
-//         </a>
-//       `,
-//     );
-
-//     res.json({
-//       message: "Reset email sent",
-//     });
-//   } catch (error) {
-//     res.status(500).json({
-//       message: error.message,
-//     });
-//   }
-// };
 
 
 const forgotPassword = async (req, res) => {
