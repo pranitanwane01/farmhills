@@ -29,7 +29,7 @@ const nodemailer = require("nodemailer");
 
 const sendEmail = async (to, subject, text) => {
   try {
-    console.log("EMAIL USER:", process.env.EMAIL_USER);
+    console.log("Creating transporter...");
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -39,16 +39,23 @@ const sendEmail = async (to, subject, text) => {
       },
     });
 
-    await transporter.sendMail({
+    console.log("Verifying transporter...");
+    await transporter.verify();
+    console.log("Transport verified.");
+
+    console.log("Sending email...");
+
+    const info = await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to,
       subject,
       text,
     });
 
-    console.log("✅ Email Sent");
+    console.log("Email sent:", info.response);
+
   } catch (err) {
-    console.error("❌ MAIL ERROR:", err);
+    console.error("EMAIL ERROR:", err);
     throw err;
   }
 };
