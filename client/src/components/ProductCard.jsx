@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 import { CartContext } from "../context/CartContext";
 
+import toast from "react-hot-toast";
+
 function ProductCard({ product }) {
 
   const { addToCart } =
@@ -150,6 +152,7 @@ function ProductCard({ product }) {
                   price:
                     prices[selectedWeight],
                 });
+                toast.success("Item added to cart. Check your cart.");
 
               }}
               className="w-full mt-5 bg-[#9B4D0D] hover:bg-[#7A3A05] text-white py-3 rounded-2xl font-semibold text-lg transition duration-300"
