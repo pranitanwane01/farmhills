@@ -101,9 +101,50 @@ const loginUser = async (req, res) => {
 };
 
 
+// const forgotPassword = async (req, res) => {
+//   try {
+//     const user = await User.findOne({
+//       email: req.body.email,
+//     });
+
+//     if (!user) {
+//       return res.status(404).json({
+//         message: "User not found",
+//       });
+//     }
+
+//     // GENERATE OTP
+//     const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+//     user.resetOtp = otp;
+
+//     user.resetOtpExpire = Date.now() + 10 * 60 * 1000;
+
+//     await user.save();
+
+//     // SEND EMAIL
+//     await sendEmail(
+//       user.email,
+
+//       "Password Reset OTP",
+
+//       `Your OTP is ${otp}`,
+//     );
+
+//     res.json({
+//       message: "OTP sent to email",
+//     });
+//   } catch (error) {
+//     res.status(500).json({
+//       message: error.message,
+//     });
+//   }
+// };
 
 const forgotPassword = async (req, res) => {
   try {
+    console.log("Forgot Password Request:", req.body.email);
+
     const user = await User.findOne({
       email: req.body.email,
     });
@@ -114,35 +155,39 @@ const forgotPassword = async (req, res) => {
       });
     }
 
-    // GENERATE OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
     user.resetOtp = otp;
-
     user.resetOtpExpire = Date.now() + 10 * 60 * 1000;
 
     await user.save();
 
-    // SEND EMAIL
+    console.log("OTP Saved:", otp);
+
     await sendEmail(
       user.email,
-
       "Password Reset OTP",
-
-      `Your OTP is ${otp}`,
+      `Your OTP is ${otp}`
     );
+
+    console.log("Email Sent Successfully");
 
     res.json({
       message: "OTP sent to email",
     });
+
   } catch (error) {
+    console.error("Forgot Password Error:", error);
+
     res.status(500).json({
       message: error.message,
     });
   }
 };
 
+
 // const resetPassword = async (req, res) => {
+
 //   try {
 //     const user = await User.findOne({
 //       resetPasswordToken: req.params.token,
@@ -177,59 +222,40 @@ const forgotPassword = async (req, res) => {
 // };
 
 const resetPassword = async (req, res) => {
-
   try {
+    const { email, otp, password } = req.body;
 
-    const {
+    const user = await User.findOne({
       email,
-      otp,
-      password,
-    } = req.body;
-
-    const user =
-      await User.findOne({
-        email,
-        resetOtp: otp,
-        resetOtpExpire: {
-          $gt: Date.now(),
-        },
-      });
+      resetOtp: otp,
+      resetOtpExpire: {
+        $gt: Date.now(),
+      },
+    });
 
     if (!user) {
-
       return res.status(400).json({
         message: "Invalid OTP",
       });
     }
 
     // HASH PASSWORD
-    const hashedPassword =
-      await bcrypt.hash(
-        password,
-        10
-      );
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    user.password =
-      hashedPassword;
+    user.password = hashedPassword;
 
-    user.resetOtp =
-      undefined;
+    user.resetOtp = undefined;
 
-    user.resetOtpExpire =
-      undefined;
+    user.resetOtpExpire = undefined;
 
     await user.save();
 
     res.json({
-      message:
-        "Password Reset Successful",
+      message: "Password Reset Successful",
     });
-
   } catch (error) {
-
     res.status(500).json({
-      message:
-        error.message,
+      message: error.message,
     });
   }
 };
