@@ -129,6 +129,18 @@ function CustomerLayout() {
 
 
 
+// function App() {
+//   return (
+//     <Routes>
+//       {/* Customer Website */}
+//       <Route path="/*" element={<CustomerLayout />} />
+
+//       {/* Admin Dashboard */}
+//       <Route path="/admin/*" element={<AdminRoutes />} />
+//     </Routes>
+//   );
+// }
+
 function App() {
   return (
     <Routes>
@@ -136,9 +148,18 @@ function App() {
       <Route path="/*" element={<CustomerLayout />} />
 
       {/* Admin Dashboard */}
-      <Route path="/admin/*" element={<AdminRoutes />} />
+      <Route
+        path="/admin/*"
+        element={
+          <AdminProtectedRoute>
+            <AdminRoutes />
+          </AdminProtectedRoute>
+        }
+      />
     </Routes>
   );
 }
+
+export default App;
 
 export default App;

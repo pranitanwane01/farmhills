@@ -13,7 +13,7 @@ import Users from "../pages/Users";
 const AdminRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<AdminLayout />}>
+      {/* <Route path="/" element={<AdminLayout />}>
         <Route path="dashboard" element={<Dashboard />} />
 
         <Route path="products" element={<Products />} />
@@ -21,6 +21,22 @@ const AdminRoutes = () => {
         <Route path="orders" element={<Orders />} />
 
         <Route path="users" element={<Users />} />
+        <Route path="add-product" element={<AddProduct />} />
+
+        <Route path="edit-product/:id" element={<EditProduct />} />
+      </Route> */}
+      
+      <Route path="/" element={<AdminLayout />}>
+        <Route index element={<Dashboard />} />
+
+        <Route path="dashboard" element={<Dashboard />} />
+
+        <Route path="products" element={<Products />} />
+
+        <Route path="orders" element={<Orders />} />
+
+        <Route path="users" element={<Users />} />
+
         <Route path="add-product" element={<AddProduct />} />
 
         <Route path="edit-product/:id" element={<EditProduct />} />
