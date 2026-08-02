@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/farmhillss.png";
@@ -52,18 +51,18 @@ function Navbar() {
   }, []);
 
   useEffect(() => {
-  const handleClickOutside = (event) => {
-    if (!event.target.closest(".profile-dropdown-container")) {
-      setProfileOpen(false);
-    }
-  };
+    const handleClickOutside = (event) => {
+      if (!event.target.closest(".profile-dropdown-container")) {
+        setProfileOpen(false);
+      }
+    };
 
-  document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, []);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -77,12 +76,12 @@ function Navbar() {
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-sm">
               <div className="flex items-center gap-2">
                 <Phone size={16} />
-                <p>+91-7067504574</p>
+                <p>+919131824144</p>
               </div>
 
               <div className="flex items-center gap-2">
                 <Mail size={16} />
-                <p>sajalsahu@gmail.com</p>
+                <p>farmhills25@gmail.com</p>
               </div>
             </div>
 
@@ -143,9 +142,7 @@ function Navbar() {
             />
 
             <div>
-              <h1 className="text-3xl font-bold text-[#9B4D0D]">
-                FarmHills
-              </h1>
+              <h1 className="text-3xl font-bold text-[#9B4D0D]">FarmHills</h1>
 
               <p className="text-sm tracking-[4px] text-[#7B6252]">
                 PREMIUM DRY FRUITS
@@ -227,10 +224,7 @@ function Navbar() {
                     <div className="bg-[#F7F3EE] p-5 border-b">
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#9B4D0D] to-[#C28B2C] text-white flex items-center justify-center shadow-md hover:bg-[#7f3f08] hover:scale-105 transition-all duration-300">
-                          <CircleUserRound
-                            size={26}
-                            strokeWidth={2.2}
-                          />
+                          <CircleUserRound size={26} strokeWidth={2.2} />
                         </div>
 
                         <div>
@@ -238,9 +232,7 @@ function Navbar() {
                             {user.name}
                           </h3>
 
-                          <p className="text-sm text-gray-500">
-                            {user.email}
-                          </p>
+                          <p className="text-sm text-gray-500">{user.email}</p>
                         </div>
                       </div>
                     </div>
@@ -355,18 +347,13 @@ function Navbar() {
               <>
                 <div className="flex items-center gap-3">
                   <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#9B4D0D] to-[#C28B2C] text-white flex items-center justify-center">
-                    <CircleUserRound
-                      size={22}
-                      strokeWidth={2.2}
-                    />
+                    <CircleUserRound size={22} strokeWidth={2.2} />
                   </div>
 
                   <div>
                     <p className="text-sm text-gray-500">Welcome</p>
 
-                    <p className="font-semibold text-[#2B1408]">
-                      {user.name}
-                    </p>
+                    <p className="font-semibold text-[#2B1408]">{user.name}</p>
                   </div>
                 </div>
 
@@ -401,9 +388,7 @@ function Navbar() {
               className="relative flex items-center justify-center gap-2 bg-[#9B4D0D] text-white px-6 py-3 rounded-full font-semibold shadow-md"
             >
               <ShoppingBag size={20} strokeWidth={2.2} />
-
               Cart
-
               <span className="absolute top-0 right-2 bg-white text-[#9B4D0D] w-5 h-5 rounded-full text-xs font-bold flex items-center justify-center shadow">
                 {totalItems}
               </span>

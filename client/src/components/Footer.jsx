@@ -373,7 +373,7 @@ function Footer() {
 
               <p>
 
-                support@farmhills.com
+                farmhills25@gmail.com
 
               </p>
 
@@ -391,8 +391,7 @@ function Footer() {
 
               <p>
 
-                +91 7076704574
-
+                +919131824144 
               </p>
 
             </div>
