@@ -101,8 +101,9 @@ function BestSellers() {
                 {/* PRICE */}
                 <div>
                   <p className="text-[#9B4D0D] text-3xl font-bold">
-                    ₹{item.price}
+                    ₹{item.price} /250gm
                   </p>
+                  
                 </div>
 
                 {/* ADD TO CART BUTTON */}
