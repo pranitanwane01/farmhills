@@ -127,11 +127,11 @@ function Navbar() {
       {/* MAIN NAVBAR */}
 
       <nav
-        className={`w-full bg-[#EFE2C8] px-6 md:px-12 py-5 shadow-sm z-50 transition-all duration-300
+        className={`w-full bg-[#EFE2C8] px-6 md:px-12 py-5 shadow-sm z-50 transition-all duration-200
         ${isScrolled ? "fixed top-0 left-0 shadow-lg" : "relative"}
         `}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="max-w-5xl mx-auto flex items-center justify-between">
           {/* LOGO */}
 
           <Link to="/" className="flex items-center gap-3">
