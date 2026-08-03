@@ -21,22 +21,39 @@
 // export default ProtectedRoute;
 
 
+// import { useContext } from "react";
+// import { Navigate } from "react-router-dom";
+// import { AuthContext } from "../context/AuthContext";
+
+// function AdminProtectedRoute({ children }) {
+//   const { user } = useContext(AuthContext);
+
+//   if (!user) {
+//     return <Navigate to="/login" />;
+//   }
+
+//   if (!user.isAdmin) {
+//     return <Navigate to="/" />;
+//   }
+
+//   return children;
+// }
+
+// export default AdminProtectedRoute;
+
+
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
-function AdminProtectedRoute({ children }) {
+function ProtectedRoute({ children }) {
   const { user } = useContext(AuthContext);
 
   if (!user) {
-    return <Navigate to="/login" />;
-  }
-
-  if (!user.isAdmin) {
-    return <Navigate to="/" />;
+    return <Navigate to="/login" replace />;
   }
 
   return children;
 }
 
-export default AdminProtectedRoute;
+export default ProtectedRoute;
