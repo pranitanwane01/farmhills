@@ -76,7 +76,7 @@ function Footer() {
           <div className="flex gap-3 mt-6">
 
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/share/19Sx5DdkKj/"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-[#F4D03F] hover:text-[#2B1408] transition duration-300"
@@ -87,7 +87,7 @@ function Footer() {
             </a>
 
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/farmh_ills?igsh=NXc5eDJzMG85ZDI0"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-[#F4D03F] hover:text-[#2B1408] transition duration-300"
@@ -98,7 +98,7 @@ function Footer() {
             </a>
 
             <a
-              href="https://twitter.com"
+              href="https://www.threads.com/@farmh_ills"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-[#F4D03F] hover:text-[#2B1408] transition duration-300"
@@ -109,7 +109,7 @@ function Footer() {
             </a>
 
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/company/farmhills/"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-[#F4D03F] hover:text-[#2B1408] transition duration-300"
