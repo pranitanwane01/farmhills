@@ -1,108 +1,3 @@
-// import React from "react";
-// import heroImage from "../assets/hero.png";
-// import { Link } from "react-router-dom";
-// function HeroSection() {
-//   return (
-//     <section className="bg-[#F7F3EE] w-full px-6 md:px-12 py-10 md:py-20 overflow-hidden">
-//       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-//         {/* LEFT CONTENT */}
-
-//         <div>
-//           {/* Small Heading */}
-//           <p className="text-[#C28B2C] uppercase tracking-[6px] text-sm md:text-base font-semibold mb-6">
-//             ✦ Premium Quality
-//           </p>
-
-//           {/* Main Heading */}
-//           <h1 className="text-5xl md:text-7xl font-bold leading-tight text-[#2B1408]">
-//             Nourish With
-//             <br />
-//             <span className="text-[#9B4D0D]">Nature's Finest</span>
-//             <br />
-//             Dry Fruits
-//           </h1>
-
-//           {/* Description */}
-//           <p className="mt-8 text-lg md:text-2xl text-[#7B6252] leading-relaxed max-w-xl">
-//             Handpicked from the world's finest farms. Pure, wholesome, and
-//             delivered fresh to your door.
-//           </p>
-
-//           {/* Buttons */}
-//           <div className="flex flex-col sm:flex-row gap-5 mt-10">
-//             <Link to="/products">
-//               <button className="bg-[#9B4D0D] hover:bg-[#7A3A05] text-white px-10 py-4 rounded-full text-lg font-semibold transition duration-300 shadow-lg">
-//                 Shop Now
-//               </button>
-//             </Link>
-
-//             <Link to="/about">
-//               <button className="border-2 border-[#9B4D0D] text-[#9B4D0D] hover:bg-[#9B4D0D] hover:text-white px-10 py-4 rounded-full text-lg font-semibold transition duration-300">
-//                 Our Story
-//               </button>
-//             </Link>
-//           </div>
-//         </div>
-
-//         {/* RIGHT CONTENT */}
-
-//         <div className="bg-[#EFE2C8] rounded-none lg:rounded-tl-[120px] lg:rounded-br-[120px] p-10 md:p-16 flex flex-col items-center justify-center min-h-[500px] shadow-xl relative">
-//           {/* Circle Background */}
-//           <div className="w-72 h-72 bg-gradient-to-b from-[#C98C4B] to-[#9B4D0D] rounded-full flex items-center justify-center shadow-2xl">
-//             <img
-//               src={heroImage}
-//               alt="Dry Fruits"
-//               className="w-64 h-64 object-cover rounded-full drop-shadow-2xl"
-//             />
-//           </div>
-
-//           {/* Product Info */}
-//           <div className="mt-10 text-center">
-//             <h2 className="text-3xl font-semibold text-[#7B6252]">
-//               Premium Mixed Collection
-//             </h2>
-
-//             <p className="text-[#C28B2C] text-2xl mt-4 font-medium">
-//               Starting ₹199 / 250g
-//             </p>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* BOTTOM FEATURES */}
-
-//       <div className="bg-[#9B4D0D] mt-16 rounded-xl px-6 md:px-12 py-6">
-//         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-white text-center">
-//           <div>
-//             <h3 className="text-xl font-bold">🚚 Free Delivery</h3>
-
-//             <p className="text-sm mt-1 text-gray-200">Above ₹499</p>
-//           </div>
-
-//           <div>
-//             <h3 className="text-xl font-bold">✦ 100% Natural</h3>
-
-//             <p className="text-sm mt-1 text-gray-200">Organic Products</p>
-//           </div>
-
-//           <div>
-//             <h3 className="text-xl font-bold">📦 Fresh Packs</h3>
-
-//             <p className="text-sm mt-1 text-gray-200">Sealed Packaging</p>
-//           </div>
-
-//           <div>
-//             <h3 className="text-xl font-bold">⭐ 4.9 Rating</h3>
-
-//             <p className="text-sm mt-1 text-gray-200">Trusted Customers</p>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-// export default HeroSection;
 
 
 // import React, { useEffect, useState } from "react";
@@ -116,6 +11,9 @@
 // import offer5 from "../assets/offer5.png";
 
 // function HeroSection() {
+//   // ==============================
+//   // OFFER IMAGES
+//   // ==============================
 //   const offers = [
 //     offer1,
 //     offer2,
@@ -124,65 +22,56 @@
 //     offer5,
 //   ];
 
+//   // ==============================
+//   // CURRENT SLIDE
+//   // ==============================
 //   const [currentSlide, setCurrentSlide] = useState(0);
 
-//   // ============================
-//   // AUTO SLIDE
-//   // ============================
+//   // ==============================
+//   // NEXT SLIDE
+//   // ==============================
+//   const nextSlide = () => {
+//     setCurrentSlide((prev) => (prev + 1) % offers.length);
+//   };
 
+//   // ==============================
+//   // PREVIOUS SLIDE
+//   // ==============================
+//   const previousSlide = () => {
+//     setCurrentSlide(
+//       (prev) => (prev - 1 + offers.length) % offers.length
+//     );
+//   };
+
+//   // ==============================
+//   // AUTO SLIDE
+//   // Changes every 4 seconds
+//   // ==============================
 //   useEffect(() => {
 //     const interval = setInterval(() => {
-//       setCurrentSlide((prev) => {
-//         return (prev + 1) % offers.length;
-//       });
+//       setCurrentSlide((prev) => (prev + 1) % offers.length);
 //     }, 4000);
 
 //     return () => clearInterval(interval);
 //   }, [offers.length]);
 
-//   // ============================
-//   // NEXT
-//   // ============================
-
-//   const nextSlide = () => {
-//     setCurrentSlide((prev) => {
-//       return (prev + 1) % offers.length;
-//     });
-//   };
-
-//   // ============================
-//   // PREVIOUS
-//   // ============================
-
-//   const previousSlide = () => {
-//     setCurrentSlide((prev) => {
-//       return (prev - 1 + offers.length) % offers.length;
-//     });
-//   };
-
 //   return (
 //     <section className="bg-[#F7F3EE] w-full px-6 md:px-12 py-10 md:py-20 overflow-hidden">
+//       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-1 items-center">
 
-//       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-
-//         {/* =====================================================
-//             LEFT SIDE - PERMANENT CONTENT
-//         ====================================================== */}
+//         {/* ===================================================== */}
+//         {/* LEFT CONTENT */}
+//         {/* ===================================================== */}
 
 //         <div>
-
-//           {/* PREMIUM QUALITY */}
-
+//           {/* Small Heading */}
 //           <p className="text-[#C28B2C] uppercase tracking-[6px] text-sm md:text-base font-semibold mb-6">
 //             ✦ Premium Quality
 //           </p>
 
-//           {/* MAIN HEADING */}
-
+//           {/* Main Heading */}
 //           <h1 className="text-5xl md:text-7xl font-bold leading-tight text-[#2B1408]">
-
 //             Nourish With
-
 //             <br />
 
 //             <span className="text-[#9B4D0D]">
@@ -192,23 +81,20 @@
 //             <br />
 
 //             Dry Fruits
-
 //           </h1>
 
-//           {/* DESCRIPTION */}
-
+//           {/* Description */}
 //           <p className="mt-8 text-lg md:text-2xl text-[#7B6252] leading-relaxed max-w-xl">
-//             Handpicked from the world's finest farms. Pure, wholesome, and
-//             delivered fresh to your door.
+//             Handpicked from the world's finest farms. Pure,
+//             wholesome, and delivered fresh to your door.
 //           </p>
 
-//           {/* BUTTONS */}
-
+//           {/* Buttons */}
 //           <div className="flex flex-col sm:flex-row gap-5 mt-10">
 
+//             {/* SHOP NOW */}
 //             <Link to="/products">
 //               <button
-//                 type="button"
 //                 className="
 //                   bg-[#9B4D0D]
 //                   hover:bg-[#7A3A05]
@@ -221,17 +107,15 @@
 //                   transition
 //                   duration-300
 //                   shadow-lg
-//                   w-full
-//                   sm:w-auto
 //                 "
 //               >
 //                 Shop Now
 //               </button>
 //             </Link>
 
+//             {/* OUR STORY */}
 //             <Link to="/about">
 //               <button
-//                 type="button"
 //                 className="
 //                   border-2
 //                   border-[#9B4D0D]
@@ -245,8 +129,6 @@
 //                   font-semibold
 //                   transition
 //                   duration-300
-//                   w-full
-//                   sm:w-auto
 //                 "
 //               >
 //                 Our Story
@@ -254,183 +136,151 @@
 //             </Link>
 
 //           </div>
-
 //         </div>
 
-//         {/* =====================================================
-//             RIGHT SIDE - OFFER IMAGE SLIDER
-//         ====================================================== */}
+//         {/* ===================================================== */}
+//         {/* RIGHT OFFER SLIDER */}
+//         {/* SAME SHAPE / SIZE AS YOUR ORIGINAL DESIGN */}
+//         {/* ===================================================== */}
 
+//      {/* RIGHT OFFER SLIDER */}
+// <div
+//   className="
+//     relative
+//     min-h-[500px]
+//     overflow-hidden
+//     bg-[#EFE2C8]
+//     border-amber-800
+//     rounded-none
+//     lg:rounded-tl-[100px]
+//     lg:rounded-br-[100px]
+    
+//     shadow-xl
+//   "
+// >
+//   {/* OFFER IMAGE - FULL SIZE */}
+//   <img
+//     key={currentSlide}
+//     src={offers[currentSlide]}
+//     alt={`FarmHills Offer ${currentSlide + 1}`}
+//     className="
+//       absolute
+//       inset-0
+//       w-full
+//       h-full
+//       object-cover
+//       transition-opacity
+//       duration-700
+//     "
+//   />
 
-//         <div className="relative w-full">
+//   {/* LEFT ARROW */}
+//   <button
+//     type="button"
+//     onClick={previousSlide}
+//     aria-label="Previous offer"
+//     className="
+//       absolute
+//       left-4
+//       md:left-6
+//       top-1/2
+//       -translate-y-1/2
+//       z-20
+//       w-11
+//       h-11
+//       md:w-12
+//       md:h-12
+//       rounded-full
+//       bg-white
+//       shadow-lg
+//       flex
+//       items-center
+//       justify-center
+//       text-[#7A3A05]
+//       hover:bg-[#9B4D0D]
+//       hover:text-white
+//       transition
+//     "
+//   >
+//     <ChevronLeft size={24} />
+//   </button>
 
-//           {/* SLIDER */}
+//   {/* RIGHT ARROW */}
+//   <button
+//     type="button"
+//     onClick={nextSlide}
+//     aria-label="Next offer"
+//     className="
+//       absolute
+//       right-4
+//       md:right-6
+//       top-1/2
+//       -translate-y-1/2
+//       z-20
+//       w-11
+//       h-11
+//       md:w-12
+//       md:h-12
+//       rounded-full
+//       bg-white
+//       shadow-lg
+//       flex
+//       items-center
+//       justify-center
+//       text-[#7A3A05]
+//       hover:bg-[#9B4D0D]
+//       hover:text-white
+//       transition
+//     "
+//   >
+//     <ChevronRight size={24} />
+//   </button>
 
-//           <div
-//             className="
-//               relative
-//               w-full
-//               overflow-hidden
-//               rounded-[35px]
-//               shadow-xl
-//               bg-[#EFE2C8]
-//               aspect-[16/10]
-//             "
-//           >
-
-//             {/* IMAGES */}
-
-//             {offers.map((image, index) => (
-//               <img
-//                 key={index}
-//                 src={image}
-//                 alt={`FarmHills Offer ${index + 1}`}
-//                 className={`
-//                   absolute
-//                   inset-0
-//                   w-full
-//                   h-full
-//                   object-cover
-//                   transition-all
-//                   duration-700
-//                   ease-in-out
-//                   ${
-//                     currentSlide === index
-//                       ? "opacity-100 scale-100"
-//                       : "opacity-0 scale-105"
-//                   }
-//                 `}
-//               />
-//             ))} 
-            
-
-//             {/* =================================================
-//                 PREVIOUS BUTTON
-//             ================================================== */}
-
-//             <button
-//               type="button"
-//               onClick={previousSlide}
-//               aria-label="Previous offer"
-//               className="
-//                 absolute
-//                 left-4
-//                 md:left-6
-//                 top-1/2
-//                 -translate-y-1/2
-//                 z-20
-//                 w-11
-//                 h-11
-//                 md:w-14
-//                 md:h-14
-//                 rounded-full
-//                 bg-white
-//                 text-[#7B6252]
-//                 shadow-xl
-//                 flex
-//                 items-center
-//                 justify-center
-//                 hover:bg-[#9B4D0D]
-//                 hover:text-white
-//                 transition
-//                 duration-300
-//               "
-//             >
-//               <ChevronLeft
-//                 size={28}
-//               />
-//             </button>
-
-//             {/* =================================================
-//                 NEXT BUTTON
-//             ================================================== */}
-
-//             <button
-//               type="button"
-//               onClick={nextSlide}
-//               aria-label="Next offer"
-//               className="
-//                 absolute
-//                 right-4
-//                 md:right-6
-//                 top-1/2
-//                 -translate-y-1/2
-//                 z-20
-//                 w-11
-//                 h-11
-//                 md:w-14
-//                 md:h-14
-//                 rounded-full
-//                 bg-white
-//                 text-[#7B6252]
-//                 shadow-xl
-//                 flex
-//                 items-center
-//                 justify-center
-//                 hover:bg-[#9B4D0D]
-//                 hover:text-white
-//                 transition
-//                 duration-300
-//               "
-//             >
-//               <ChevronRight
-//                 size={28}
-//               />
-//             </button>
-
-//             {/* =================================================
-//                 SLIDER DOTS
-//             ================================================== */}
-
-//             <div
-//               className="
-//                 absolute
-//                 bottom-5
-//                 left-0
-//                 right-0
-//                 z-20
-//                 flex
-//                 justify-center
-//                 items-center
-//                 gap-3
-//               "
-//             >
-
-//               {offers.map((_, index) => (
-//                 <button
-//                   key={index}
-//                   type="button"
-//                   onClick={() => setCurrentSlide(index)}
-//                   aria-label={`Show offer ${index + 1}`}
-//                   className={`
-//                     rounded-full
-//                     transition-all
-//                     duration-300
-//                     ${
-//                       currentSlide === index
-//                         ? "w-8 h-3 bg-[#9B4D0D]"
-//                         : "w-3 h-3 bg-white/80 hover:bg-white"
-//                     }
-//                   `}
-//                 />
-//               ))}
-
-//             </div>
-
-//           </div>
-
-//         </div>
-
+//   {/* DOTS */}
+//   <div
+//     className="
+//       absolute
+//       bottom-5
+//       left-1/2
+//       -translate-x-1/2
+//       z-20
+//       flex
+//       items-center
+//       gap-2
+//     "
+//   >
+//     {offers.map((_, index) => (
+//       <button
+//         key={index}
+//         type="button"
+//         onClick={() => setCurrentSlide(index)}
+//         aria-label={`Go to offer ${index + 1}`}
+//         className={`
+//           rounded-full
+//           transition-all
+//           duration-300
+//           ${
+//             currentSlide === index
+//               ? "w-8 h-3 bg-[#9B4D0D]"
+//               : "w-3 h-3 bg-white"
+//           }
+//         `}
+//       />
+//     ))}
+//   </div>
+// </div>
 //       </div>
 
-//       {/* =====================================================
-//           BOTTOM FEATURES
-//       ====================================================== */}
+//       {/* ===================================================== */}
+//       {/* BOTTOM FEATURES */}
+//       {/* ===================================================== */}
+
+
 
 //       <div className="bg-[#9B4D0D] mt-16 rounded-xl px-6 md:px-12 py-6">
-
 //         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-white text-center">
 
+//           {/* FREE DELIVERY */}
 //           <div>
 //             <h3 className="text-xl font-bold">
 //               🚚 Free Delivery
@@ -441,6 +291,7 @@
 //             </p>
 //           </div>
 
+//           {/* NATURAL */}
 //           <div>
 //             <h3 className="text-xl font-bold">
 //               ✦ 100% Natural
@@ -451,6 +302,7 @@
 //             </p>
 //           </div>
 
+//           {/* FRESH PACKS */}
 //           <div>
 //             <h3 className="text-xl font-bold">
 //               📦 Fresh Packs
@@ -461,6 +313,7 @@
 //             </p>
 //           </div>
 
+//           {/* RATING */}
 //           <div>
 //             <h3 className="text-xl font-bold">
 //               ⭐ 4.9 Rating
@@ -472,14 +325,13 @@
 //           </div>
 
 //         </div>
-
 //       </div>
-
 //     </section>
 //   );
 // }
 
 // export default HeroSection;
+
 
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -495,6 +347,7 @@ function HeroSection() {
   // ==============================
   // OFFER IMAGES
   // ==============================
+
   const offers = [
     offer1,
     offer2,
@@ -506,18 +359,23 @@ function HeroSection() {
   // ==============================
   // CURRENT SLIDE
   // ==============================
+
   const [currentSlide, setCurrentSlide] = useState(0);
 
   // ==============================
   // NEXT SLIDE
   // ==============================
+
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % offers.length);
+    setCurrentSlide(
+      (prev) => (prev + 1) % offers.length
+    );
   };
 
   // ==============================
   // PREVIOUS SLIDE
   // ==============================
+
   const previousSlide = () => {
     setCurrentSlide(
       (prev) => (prev - 1 + offers.length) % offers.length
@@ -526,33 +384,86 @@ function HeroSection() {
 
   // ==============================
   // AUTO SLIDE
-  // Changes every 4 seconds
   // ==============================
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % offers.length);
+      setCurrentSlide(
+        (prev) => (prev + 1) % offers.length
+      );
     }, 4000);
 
     return () => clearInterval(interval);
   }, [offers.length]);
 
   return (
-    <section className="bg-[#F7F3EE] w-full px-6 md:px-12 py-10 md:py-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-1 items-center">
+    <section
+      className="
+        bg-[#F7F3EE]
+        w-full
+        px-4
+        sm:px-6
+        md:px-12
+        py-7
+        sm:py-10
+        md:py-20
+        overflow-hidden
+      "
+    >
+      <div
+        className="
+          max-w-7xl
+          mx-auto
+          grid
+          grid-cols-1
+          lg:grid-cols-2
+          gap-6
+          lg:gap-1
+          items-center
+        "
+      >
 
-        {/* ===================================================== */}
-        {/* LEFT CONTENT */}
-        {/* ===================================================== */}
+        {/* =====================================================
+            LEFT CONTENT
+        ====================================================== */}
 
         <div>
-          {/* Small Heading */}
-          <p className="text-[#C28B2C] uppercase tracking-[6px] text-sm md:text-base font-semibold mb-6">
+
+          {/* SMALL HEADING */}
+
+          <p
+            className="
+              text-[#C28B2C]
+              uppercase
+              tracking-[3px]
+              sm:tracking-[5px]
+              md:tracking-[6px]
+              text-[11px]
+              sm:text-sm
+              md:text-base
+              font-semibold
+              mb-4
+              sm:mb-5
+              md:mb-6
+            "
+          >
             ✦ Premium Quality
           </p>
 
-          {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight text-[#2B1408]">
+          {/* MAIN HEADING */}
+
+          <h1
+            className="
+              text-[38px]
+              sm:text-5xl
+              md:text-7xl
+              font-bold
+              leading-[1.08]
+              text-[#2B1408]
+            "
+          >
             Nourish With
+
             <br />
 
             <span className="text-[#9B4D0D]">
@@ -564,26 +475,58 @@ function HeroSection() {
             Dry Fruits
           </h1>
 
-          {/* Description */}
-          <p className="mt-8 text-lg md:text-2xl text-[#7B6252] leading-relaxed max-w-xl">
-            Handpicked from the world's finest farms. Pure,
-            wholesome, and delivered fresh to your door.
+          {/* DESCRIPTION */}
+
+          <p
+            className="
+              mt-5
+              sm:mt-6
+              md:mt-8
+              text-[15px]
+              sm:text-lg
+              md:text-2xl
+              text-[#7B6252]
+              leading-relaxed
+              max-w-xl
+            "
+          >
+            Handpicked from the world's finest farms.
+            Pure, wholesome, and delivered fresh to your
+            door.
           </p>
 
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-5 mt-10">
+          {/* BUTTONS */}
+
+          <div
+            className="
+              flex
+              flex-row
+              gap-3
+              sm:gap-5
+              mt-6
+              sm:mt-8
+              md:mt-10
+            "
+          >
 
             {/* SHOP NOW */}
+
             <Link to="/products">
               <button
                 className="
                   bg-[#9B4D0D]
                   hover:bg-[#7A3A05]
                   text-white
-                  px-10
-                  py-4
+                  px-6
+                  sm:px-8
+                  md:px-10
+                  py-3
+                  sm:py-3.5
+                  md:py-4
                   rounded-full
-                  text-lg
+                  text-sm
+                  sm:text-base
+                  md:text-lg
                   font-semibold
                   transition
                   duration-300
@@ -595,6 +538,7 @@ function HeroSection() {
             </Link>
 
             {/* OUR STORY */}
+
             <Link to="/about">
               <button
                 className="
@@ -603,10 +547,16 @@ function HeroSection() {
                   text-[#9B4D0D]
                   hover:bg-[#9B4D0D]
                   hover:text-white
-                  px-10
-                  py-4
+                  px-6
+                  sm:px-8
+                  md:px-10
+                  py-3
+                  sm:py-3.5
+                  md:py-4
                   rounded-full
-                  text-lg
+                  text-sm
+                  sm:text-base
+                  md:text-lg
                   font-semibold
                   transition
                   duration-300
@@ -619,194 +569,331 @@ function HeroSection() {
           </div>
         </div>
 
-        {/* ===================================================== */}
-        {/* RIGHT OFFER SLIDER */}
-        {/* SAME SHAPE / SIZE AS YOUR ORIGINAL DESIGN */}
-        {/* ===================================================== */}
+        {/* =====================================================
+            RIGHT OFFER SLIDER
+        ====================================================== */}
 
-     {/* RIGHT OFFER SLIDER */}
-<div
-  className="
-    relative
-    min-h-[500px]
-    overflow-hidden
-    bg-[#EFE2C8]
-    border-amber-800
-    rounded-none
-    lg:rounded-tl-[100px]
-    lg:rounded-br-[100px]
-    
-    shadow-xl
-  "
->
-  {/* OFFER IMAGE - FULL SIZE */}
-  <img
-    key={currentSlide}
-    src={offers[currentSlide]}
-    alt={`FarmHills Offer ${currentSlide + 1}`}
-    className="
-      absolute
-      inset-0
-      w-full
-      h-full
-      object-cover
-      transition-opacity
-      duration-700
-    "
-  />
+        <div
+          className="
+            relative
+            w-full
 
-  {/* LEFT ARROW */}
-  <button
-    type="button"
-    onClick={previousSlide}
-    aria-label="Previous offer"
-    className="
-      absolute
-      left-4
-      md:left-6
-      top-1/2
-      -translate-y-1/2
-      z-20
-      w-11
-      h-11
-      md:w-12
-      md:h-12
-      rounded-full
-      bg-white
-      shadow-lg
-      flex
-      items-center
-      justify-center
-      text-[#7A3A05]
-      hover:bg-[#9B4D0D]
-      hover:text-white
-      transition
-    "
-  >
-    <ChevronLeft size={24} />
-  </button>
+            /* MOBILE */
+            h-[220px]
 
-  {/* RIGHT ARROW */}
-  <button
-    type="button"
-    onClick={nextSlide}
-    aria-label="Next offer"
-    className="
-      absolute
-      right-4
-      md:right-6
-      top-1/2
-      -translate-y-1/2
-      z-20
-      w-11
-      h-11
-      md:w-12
-      md:h-12
-      rounded-full
-      bg-white
-      shadow-lg
-      flex
-      items-center
-      justify-center
-      text-[#7A3A05]
-      hover:bg-[#9B4D0D]
-      hover:text-white
-      transition
-    "
-  >
-    <ChevronRight size={24} />
-  </button>
+            /* SMALL TABLET */
+            sm:h-[280px]
 
-  {/* DOTS */}
-  <div
-    className="
-      absolute
-      bottom-5
-      left-1/2
-      -translate-x-1/2
-      z-20
-      flex
-      items-center
-      gap-2
-    "
-  >
-    {offers.map((_, index) => (
-      <button
-        key={index}
-        type="button"
-        onClick={() => setCurrentSlide(index)}
-        aria-label={`Go to offer ${index + 1}`}
-        className={`
-          rounded-full
-          transition-all
-          duration-300
-          ${
-            currentSlide === index
-              ? "w-8 h-3 bg-[#9B4D0D]"
-              : "w-3 h-3 bg-white"
-          }
-        `}
-      />
-    ))}
-  </div>
-</div>
+            /* DESKTOP */
+            md:h-[400px]
+            lg:min-h-[500px]
+            lg:h-[500px]
+
+            overflow-hidden
+            bg-[#EFE2C8]
+
+            rounded-[28px]
+
+            lg:rounded-none
+            lg:rounded-tl-[100px]
+            lg:rounded-br-[100px]
+
+            shadow-xl
+          "
+        >
+
+          {/* OFFER IMAGE */}
+
+          <img
+            key={currentSlide}
+            src={offers[currentSlide]}
+            alt={`FarmHills Offer ${currentSlide + 1}`}
+            className="
+              absolute
+              inset-0
+              w-full
+              h-full
+              object-cover
+              transition-opacity
+              duration-700
+            "
+          />
+
+          {/* =================================================
+              LEFT ARROW
+          ================================================== */}
+
+          <button
+            type="button"
+            onClick={previousSlide}
+            aria-label="Previous offer"
+            className="
+              absolute
+              left-2
+              sm:left-4
+              md:left-6
+              top-1/2
+              -translate-y-1/2
+              z-20
+
+              w-8
+              h-8
+
+              sm:w-10
+              sm:h-10
+
+              md:w-12
+              md:h-12
+
+              rounded-full
+              bg-white
+              shadow-lg
+
+              flex
+              items-center
+              justify-center
+
+              text-[#7A3A05]
+
+              hover:bg-[#9B4D0D]
+              hover:text-white
+              transition
+            "
+          >
+            <ChevronLeft
+              size={18}
+              className="sm:w-5 sm:h-5 md:w-6 md:h-6"
+            />
+          </button>
+
+          {/* =================================================
+              RIGHT ARROW
+          ================================================== */}
+
+          <button
+            type="button"
+            onClick={nextSlide}
+            aria-label="Next offer"
+            className="
+              absolute
+              right-2
+              sm:right-4
+              md:right-6
+              top-1/2
+              -translate-y-1/2
+              z-20
+
+              w-8
+              h-8
+
+              sm:w-10
+              sm:h-10
+
+              md:w-12
+              md:h-12
+
+              rounded-full
+              bg-white
+              shadow-lg
+
+              flex
+              items-center
+              justify-center
+
+              text-[#7A3A05]
+
+              hover:bg-[#9B4D0D]
+              hover:text-white
+              transition
+            "
+          >
+            <ChevronRight
+              size={18}
+              className="sm:w-5 sm:h-5 md:w-6 md:h-6"
+            />
+          </button>
+
+          {/* =================================================
+              DOTS
+          ================================================== */}
+
+          <div
+            className="
+              absolute
+              bottom-3
+              sm:bottom-4
+              md:bottom-5
+              left-1/2
+              -translate-x-1/2
+              z-20
+              flex
+              items-center
+              gap-1.5
+              sm:gap-2
+            "
+          >
+            {offers.map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                onClick={() => setCurrentSlide(index)}
+                aria-label={`Go to offer ${index + 1}`}
+                className={`
+                  rounded-full
+                  transition-all
+                  duration-300
+
+                  ${
+                    currentSlide === index
+                      ? "w-6 sm:w-8 h-2.5 sm:h-3 bg-[#9B4D0D]"
+                      : "w-2.5 sm:w-3 h-2.5 sm:h-3 bg-white"
+                  }
+                `}
+              />
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* ===================================================== */}
-      {/* BOTTOM FEATURES */}
-      {/* ===================================================== */}
+      {/* =====================================================
+          BOTTOM FEATURES
+      ====================================================== */}
 
+      {/* <div
+        className="
+          bg-[#9B4D0D]
+          mt-8
+          sm:mt-10
+          md:mt-16
+          rounded-xl
+          px-4
+          sm:px-6
+          md:px-12
+          py-4
+          sm:py-5
+          md:py-6
+        "
+      >
 
-
-      <div className="bg-[#9B4D0D] mt-16 rounded-xl px-6 md:px-12 py-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-white text-center">
+        <div
+          className="
+            grid
+            grid-cols-2
+            md:grid-cols-4
+            gap-x-3
+            gap-y-4
+            md:gap-8
+            text-white
+            text-center
+          "
+        > */}
 
           {/* FREE DELIVERY */}
-          <div>
-            <h3 className="text-xl font-bold">
+
+          {/* <div>
+            <h3
+              className="
+                text-sm
+                sm:text-base
+                md:text-xl
+                font-bold
+              "
+            >
               🚚 Free Delivery
             </h3>
 
-            <p className="text-sm mt-1 text-gray-200">
+            <p
+              className="
+                text-[11px]
+                sm:text-sm
+                mt-1
+                text-gray-200
+              "
+            >
               Above ₹499
             </p>
-          </div>
+          </div> */}
 
           {/* NATURAL */}
-          <div>
-            <h3 className="text-xl font-bold">
+
+          {/* <div>
+            <h3
+              className="
+                text-sm
+                sm:text-base
+                md:text-xl
+                font-bold
+              "
+            >
               ✦ 100% Natural
             </h3>
 
-            <p className="text-sm mt-1 text-gray-200">
+            <p
+              className="
+                text-[11px]
+                sm:text-sm
+                mt-1
+                text-gray-200
+              "
+            >
               Organic Products
             </p>
-          </div>
+          </div> */}
 
           {/* FRESH PACKS */}
-          <div>
-            <h3 className="text-xl font-bold">
+
+          {/* <div>
+            <h3
+              className="
+                text-sm
+                sm:text-base
+                md:text-xl
+                font-bold
+              "
+            >
               📦 Fresh Packs
             </h3>
 
-            <p className="text-sm mt-1 text-gray-200">
+            <p
+              className="
+                text-[11px]
+                sm:text-sm
+                mt-1
+                text-gray-200
+              "
+            >
               Sealed Packaging
             </p>
-          </div>
+          </div> */}
 
           {/* RATING */}
-          <div>
-            <h3 className="text-xl font-bold">
+
+          {/* <div>
+            <h3
+              className="
+                text-sm
+                sm:text-base
+                md:text-xl
+                font-bold
+              "
+            >
               ⭐ 4.9 Rating
             </h3>
 
-            <p className="text-sm mt-1 text-gray-200">
+            <p
+              className="
+                text-[11px]
+                sm:text-sm
+                mt-1
+                text-gray-200
+              "
+            >
               Trusted Customers
             </p>
-          </div>
+          </div> */}
 
-        </div>
-      </div>
+        {/* </div>
+      </div> */}
     </section>
   );
 }
