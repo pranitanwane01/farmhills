@@ -7,7 +7,7 @@ const orderSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    
+
     customerName: {
       type: String,
       required: true,
@@ -49,7 +49,18 @@ const orderSchema = new mongoose.Schema(
 
     paymentStatus: {
       type: String,
+      enum: ["Pending", "Paid", "Failed"],
       default: "Pending",
+    },
+
+    paymentId: {
+      type: String,
+      default: null,
+    },
+
+    razorpayOrderId: {
+      type: String,
+      default: null,
     },
 
     orderStatus: {
