@@ -14,7 +14,6 @@
 
 //   return (
 //     <>
-      
 
 //       {/* HERO SECTION */}
 
@@ -242,17 +241,9 @@
 
 // export default About;
 
-
-
-
 import React from "react";
 
-import {
-  Leaf,
-  ShieldCheck,
-  Truck,
-  HeartHandshake,
-} from "lucide-react";
+import { Leaf, ShieldCheck, Truck, HeartHandshake } from "lucide-react";
 
 function About() {
   return (
@@ -299,7 +290,6 @@ function About() {
           ================================================== */}
 
           <div className="text-center lg:text-left">
-
             <p
               className="
                 uppercase
@@ -336,10 +326,7 @@ function About() {
             >
               Healthy Dry Fruits
               <br />
-
-              <span className="text-[#9B4D0D]">
-                For Every Family
-              </span>
+              <span className="text-[#9B4D0D]">For Every Family</span>
             </h1>
 
             <p
@@ -362,10 +349,9 @@ function About() {
                 lg:mx-0
               "
             >
-              FarmHills is committed to delivering premium
-              quality dry fruits sourced directly from trusted
-              farms. Our mission is to provide healthy, fresh,
-              and nutritious products that bring wellness to
+              FarmHills is committed to delivering premium quality dry fruits
+              sourced directly from trusted farms. Our mission is to provide
+              healthy, fresh, and nutritious products that bring wellness to
               every home.
             </p>
 
@@ -389,11 +375,10 @@ function About() {
                 lg:mx-0
               "
             >
-              We focus on quality, freshness, and customer
-              satisfaction while ensuring every product is
-              carefully selected and hygienically packed.
+              We focus on quality, freshness, and customer satisfaction while
+              ensuring every product is carefully selected and hygienically
+              packed.
             </p>
-
           </div>
 
           {/* =================================================
@@ -410,7 +395,6 @@ function About() {
               mx-auto
             "
           >
-
             <div
               className="
                 relative
@@ -426,9 +410,8 @@ function About() {
                 group
               "
             >
-
               <img
-                src="https://images.unsplash.com/photo-1515543904379-3d757afe72e4?q=80&w=1200&auto=format&fit=crop"
+                src="https://images.unsplash.com/photo-1769255484239-2f2f7278e233?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0Nnx8fGVufDB8fHx8fA%3D%3D"
                 alt="FarmHills Premium Dry Fruits"
                 className="
                   w-full
@@ -462,9 +445,7 @@ function About() {
                   pointer-events-none
                 "
               />
-
             </div>
-
           </div>
         </div>
       </section>
@@ -488,7 +469,6 @@ function About() {
         "
       >
         <div className="max-w-7xl mx-auto">
-
           {/* HEADING */}
 
           <div
@@ -500,7 +480,6 @@ function About() {
               md:mb-16
             "
           >
-
             <p
               className="
                 uppercase
@@ -551,10 +530,8 @@ function About() {
                 mt-4
               "
             >
-              Quality, freshness and care in every pack we
-              deliver.
+              Quality, freshness and care in every pack we deliver.
             </p>
-
           </div>
 
           {/* FEATURES */}
@@ -572,7 +549,6 @@ function About() {
               lg:gap-8
             "
           >
-
             {/* FEATURE 1 */}
 
             <FeatureCard
@@ -604,7 +580,6 @@ function About() {
               title="Customer Trust"
               desc="Thousands of happy customers trust our products and service."
             />
-
           </div>
         </div>
       </section>
@@ -635,7 +610,6 @@ function About() {
             text-center
           "
         >
-
           <p
             className="
               uppercase
@@ -687,14 +661,11 @@ function About() {
               md:leading-9
             "
           >
-            FarmHills started with a simple vision — to provide
-            healthy and premium dry fruits to families at
-            affordable prices. We believe nutrition should
-            never be compromised, and our goal is to build a
-            trusted brand focused on quality, freshness, and
-            wellness.
+            FarmHills started with a simple vision — to provide healthy and
+            premium dry fruits to families at affordable prices. We believe
+            nutrition should never be compromised, and our goal is to build a
+            trusted brand focused on quality, freshness, and wellness.
           </p>
-
         </div>
       </section>
     </>
@@ -705,11 +676,7 @@ function About() {
 // FEATURE CARD
 // ==========================================================
 
-function FeatureCard({
-  icon,
-  title,
-  desc,
-}) {
+function FeatureCard({ icon, title, desc }) {
   return (
     <div
       className="
@@ -741,7 +708,6 @@ function FeatureCard({
         duration-300
       "
     >
-
       {/* ICON */}
 
       <div
@@ -804,7 +770,6 @@ function FeatureCard({
       >
         {desc}
       </p>
-
     </div>
   );
 }
