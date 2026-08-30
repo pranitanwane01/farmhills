@@ -579,7 +579,7 @@ function HeroSection() {
             w-full
 
             /* MOBILE */
-            h-[180px]
+            h-[230px]
 
             /* SMALL TABLET */
             sm:h-[280px]
