@@ -10,6 +10,7 @@ const protect = async (
 
   let token;
 
+
   // CHECK TOKEN
   if (
     req.headers.authorization &&
