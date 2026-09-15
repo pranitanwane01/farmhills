@@ -7,71 +7,42 @@ import { Link } from "react-router-dom";
 const Products = () => {
   const [products, setProducts] = useState([]);
 
-useEffect(() => {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/products`,
+        );
 
-  const fetchProducts = async () => {
+        setProducts(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
+    fetchProducts();
+  }, []);
+
+  const deleteHandler = async (id) => {
     try {
+      // GET TOKEN
+      const token = localStorage.getItem("token");
 
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/products`
-      );
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/products/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-      setProducts(data);
+      setProducts(products.filter((product) => product._id !== id));
 
+      alert("Product Deleted");
     } catch (error) {
-
       console.log(error);
 
+      alert(error.response?.data?.message || "Delete Failed");
     }
   };
-
-  fetchProducts();
-
-}, []);
-
-const deleteHandler = async (id) => {
-
-  try {
-
-    // GET TOKEN
-    const token =
-      localStorage.getItem(
-        "token"
-      );
-
-    await axios.delete(
-      `${import.meta.env.VITE_API_URL}/api/products/${id}`,
-      {
-        headers: {
-          Authorization:
-            `Bearer ${token}`,
-        },
-      }
-    );
-
-    setProducts(
-      products.filter(
-        (product) =>
-          product._id !== id
-      )
-    );
-
-    alert(
-      "Product Deleted"
-    );
-
-  } catch (error) {
-
-    console.log(error);
-
-    alert(
-      error.response?.data?.message ||
-      "Delete Failed"
-    );
-
-  }
-};
 
   return (
     <div>
@@ -114,7 +85,11 @@ const deleteHandler = async (id) => {
                 {/* Product Image */}
                 <td className="py-4 px-4">
                   <img
-                    src={product.image}
+                    src={
+                      product.images?.length > 0
+                        ? product.images[0]
+                        : product.image
+                    }
                     alt={product.name}
                     className="w-16 h-16 object-cover rounded-lg"
                   />
