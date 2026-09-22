@@ -1,10 +1,9 @@
-
 import { Routes, Route } from "react-router-dom";
 
 // Customer Components
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
-import Categories from "./components/Categories";
+// import Categories from "./components/Categories";
 import BestSellers from "./components/BestSellers";
 import OfferBanner from "./components/OfferBanner";
 import WhyChooseUs from "./components/WhyChooseUs";
@@ -43,10 +42,11 @@ function HomePage() {
   return (
     <>
       <HeroSection />
-      <Categories />
       <BestSellers />
       <OfferBanner />
+      {/* <Categories /> */}
       <WhyChooseUs />
+      
     </>
   );
 }
@@ -128,20 +128,6 @@ function CustomerLayout() {
   );
 }
 
-
-
-// function App() {
-//   return (
-//     <Routes>
-//       {/* Customer Website */}
-//       <Route path="/*" element={<CustomerLayout />} />
-
-//       {/* Admin Dashboard */}
-//       <Route path="/admin/*" element={<AdminRoutes />} />
-//     </Routes>
-//   );
-// }
-
 function App() {
   return (
     <Routes>
@@ -162,5 +148,3 @@ function App() {
 }
 
 export default App;
-
-
