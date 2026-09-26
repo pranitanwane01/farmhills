@@ -1,140 +1,4 @@
-// const Product = require("../models/Product");
 
-
-// // GET PRODUCTS
-// const getProducts = async (req, res) => {
-
-//   try {
-
-//     const products = await Product.find();
-
-//     res.json(products);
-
-//   } catch (error) {
-
-//     res.status(500).json({
-//       message: error.message,
-//     });
-
-//   }
-// };
-
-
-// // CREATE PRODUCT
-// const createProduct = async (req, res) => {
-
-//   try {
-
-//     const product = await Product.create(req.body);
-
-//     res.status(201).json(product);
-
-//   } catch (error) {
-
-//     res.status(500).json({
-//       message: error.message,
-//     });
-
-//   }
-// };
-
-// // DELETE PRODUCT
-// const deleteProduct = async (req, res) => {
-
-//   try {
-
-//     const product = await Product.findByIdAndDelete(
-//       req.params.id
-//     );
-
-//     if (!product) {
-
-//       return res.status(404).json({
-//         message: "Product not found",
-//       });
-
-//     }
-
-//     res.json({
-//       message: "Product deleted successfully",
-//     });
-
-//   } catch (error) {
-
-//     res.status(500).json({
-//       message: error.message,
-//     });
-
-//   }
-// };
-
-// // GET SINGLE PRODUCT
-// const getSingleProduct = async (req, res) => {
-
-//   try {
-
-//     const product = await Product.findById(
-//       req.params.id
-//     );
-
-//     if (!product) {
-
-//       return res.status(404).json({
-//         message: "Product not found",
-//       });
-
-//     }
-
-//     res.json(product);
-
-//   } catch (error) {
-
-//     res.status(500).json({
-//       message: error.message,
-//     });
-
-//   }
-// };
-
-// // UPDATE PRODUCT
-// const updateProduct = async (req, res) => {
-
-//   try {
-
-//     const product = await Product.findByIdAndUpdate(
-//       req.params.id,
-//       req.body,
-//       {
-//         new: true,
-//       }
-//     );
-
-//     if (!product) {
-
-//       return res.status(404).json({
-//         message: "Product not found",
-//       });
-
-//     }
-
-//     res.json(product);
-
-//   } catch (error) {
-
-//     res.status(500).json({
-//       message: error.message,
-//     });
-
-//   }
-// };
-
-// module.exports = {
-//   getProducts,
-//   createProduct,
-//   deleteProduct,
-//   getSingleProduct,
-//   updateProduct,
-// };
 
 const Product = require("../models/Product");
 
@@ -142,11 +6,48 @@ const Product = require("../models/Product");
 // GET ALL PRODUCTS
 // =====================================================
 
+// const getProducts = async (req, res) => {
+//   try {
+//     const products = await Product.find();
+
+//     res.status(200).json(products);
+//   } catch (error) {
+//     console.error("Get Products Error:", error);
+
+//     res.status(500).json({
+//       message: error.message,
+//     });
+//   }
+// };
+// =====================================================
+// GET ALL PRODUCTS
+// Supports pagination
+// =====================================================
+
 const getProducts = async (req, res) => {
   try {
-    const products = await Product.find();
+    const page = Math.max(Number(req.query.page) || 1, 1);
+    const limit = Math.min(Number(req.query.limit) || 20, 50);
 
-    res.status(200).json(products);
+    const skip = (page - 1) * limit;
+
+    const [products, totalProducts] = await Promise.all([
+      Product.find()
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit)
+        .lean(),
+
+      Product.countDocuments(),
+    ]);
+
+    res.status(200).json({
+      products,
+      page,
+      limit,
+      totalProducts,
+      totalPages: Math.ceil(totalProducts / limit),
+    });
   } catch (error) {
     console.error("Get Products Error:", error);
 
