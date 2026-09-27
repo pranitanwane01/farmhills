@@ -27,7 +27,6 @@ const getBestSellers = async (req, res) => {
       isBestSeller: true,
     })
       .select("name description price stock category image images isBestSeller")
-      .sort({ createdAt: -1 })
       .limit(8)
       .lean();
 
