@@ -1,15 +1,13 @@
-
-
 // import React, { useContext, useEffect, useState } from "react";
-
 // import { Link } from "react-router-dom";
-
-// import { ShoppingCart, Star, ArrowUpRight } from "lucide-react";
-
+// import {
+//   ShoppingCart,
+//   Star,
+//   ArrowUpRight,
+// } from "lucide-react";
 // import axios from "axios";
 
 // import { CartContext } from "../context/CartContext";
-
 // import toast from "react-hot-toast";
 
 // function BestSellers() {
@@ -17,9 +15,9 @@
 
 //   const [products, setProducts] = useState([]);
 
-//   // =====================================================
+//   // ==========================================
 //   // FETCH PRODUCTS
-//   // =====================================================
+//   // ==========================================
 
 //   useEffect(() => {
 //     const fetchProducts = async () => {
@@ -34,7 +32,7 @@
 
 //         setProducts(bestProducts);
 //       } catch (error) {
-//         console.log("Best Sellers Error:", error);
+//         console.log(error);
 //       }
 //     };
 
@@ -52,23 +50,15 @@
 //         md:px-10
 //         lg:px-12
 
-//        pt-12
-// sm:pt-10
-// md:pt-20
-
-//         pb-12
-//         sm:pb-12
-//         md:pb-24
+//         py-12
+//         sm:py-16
+//         md:py-20
 
 //         overflow-hidden
 //       "
 //     >
-//       <div
-//         className="
-//           max-w-7xl
-//           mx-auto
-//         "
-//       >
+//       <div className="max-w-7xl mx-auto">
+
 //         {/* =====================================================
 //             HEADER
 //         ====================================================== */}
@@ -79,132 +69,73 @@
 //             flex-col
 
 //             md:flex-row
-//             md:items-end
+//             md:items-center
 //             md:justify-between
 
-//             gap-6
+//             gap-5
 
-//             mb-11
-//             sm:mb-12
-//             md:mb-14
+//             mb-8
+//             sm:mb-10
+//             md:mb-12
 //           "
 //         >
-//           {/* =====================================================
-//               TITLE + DESCRIPTION
-//           ====================================================== */}
 
-//           <div
-//             className="
-//               w-full
-//             "
-//           >
-//             {/* SMALL DECORATIVE LINE */}
+//           {/* LEFT */}
 
-//             <div
-//               className="
-//                 flex
-//                 items-center
-//                 justify-center
-//                 md:justify-start
-//                 gap-2
-//                 mb-3
-//               "
-//             >
-//               <span
-//                 className="
-//                   w-8
-//                   h-[2px]
-//                   bg-[#C28B2C]
-//                   rounded-full
-//                 "
-//               />
-
-//               <span
-//                 className="
-//                   text-[10px]
-//                   sm:text-xs
-//                   font-semibold
-//                   uppercase
-//                   tracking-[3px]
-//                   text-[#B77A24]
-//                 "
-//               >
-//                 FarmHills Collection
-//               </span>
-
-//               <span
-//                 className="
-//                   w-8
-//                   h-[2px]
-//                   bg-[#C28B2C]
-//                   rounded-full
-//                 "
-//               />
-//             </div>
-
-//             {/* MAIN HEADING */}
+//           <div>
 
 //             <h2
 //               className="
-//                 text-[32px]
+//                 text-4xl
 //                 sm:text-5xl
 //                 md:text-5xl
 //                 lg:text-6xl
 
 //                 font-bold
 
-//                 text-[#64290a]
+//                 text-[#2B1408]
 
-//                 leading-[1.05]
+//                 leading-tight
 
 //                 text-center
 //                 md:text-left
 //               "
 //             >
-//               Our{" "}
-//               <span
-//                 className="
-//                   text-[#9B4D0D]
-//                 "
-//               >
-//                 Products
+//               Our
+//               <span className="text-[#9B4D0D]">
+//                 {" "}Products
 //               </span>
 //             </h2>
 
-//             {/* DESCRIPTION */}
-
 //             <p
 //               className="
-//                 mt-4
-
+//                 mt-3
 //                 sm:mt-4
 
-//                 max-w-[320px]
-//                 sm:max-w-xl
+//                 max-w-xl
 
-//                 mx-auto
-//                 md:mx-0
-
-//                 text-[13px]
+//                 text-sm
 //                 sm:text-base
 //                 md:text-lg
 
-//                 text-[#aa673e]
+//                 text-[#7B6252]
 
 //                 leading-relaxed
 
 //                 text-center
 //                 md:text-left
+
+//                 px-2
+//                 md:px-0
 //               "
 //             >
-//               Handpicked favourites, packed fresh and delivered straight to your
-//               doorstep.
+//               Handpicked favourites, packed fresh and
+//               delivered straight to your doorstep.
 //             </p>
+
 //           </div>
 
-//           {/* =====================================================
-//               DESKTOP VIEW ALL
-//           ====================================================== */}
+//           {/* DESKTOP VIEW ALL */}
 
 //           <Link
 //             to="/products"
@@ -228,13 +159,14 @@
 
 //               transition-all
 //               duration-300
-
-//               whitespace-nowrap
 //             "
 //           >
 //             View All Products
+
 //             <ArrowUpRight size={18} />
+
 //           </Link>
+
 //         </div>
 
 //         {/* =====================================================
@@ -251,406 +183,391 @@
 
 //             xl:grid-cols-4
 
-//             gap-x-4
-//             gap-y-6
-
-//             sm:gap-x-5
-//             sm:gap-y-8
+//             gap-4
 
 //             md:gap-6
 
 //             lg:gap-7
 //           "
 //         >
-//           {products.map((item) => {
-//             const productImage =
-//               item.images?.length > 0 ? item.images[0] : item.image;
 
-//             return (
-//               <div
-//                 key={item._id}
-//                 className="
-//                     group
-//                     relative
+//           {products.map((item) => (
 
-//                     bg-[#FFF9F0]
+//             <div
+//               key={item._id}
+//               className="
+//                 group
+//                 relative
 
-//                     rounded-[22px]
-//                     sm:rounded-[26px]
-//                     md:rounded-[28px]
+//                 bg-[#FFF9F0]
 
-//                     overflow-hidden
+//                 rounded-[24px]
+//                 md:rounded-[28px]
 
-//                     border
-//                     border-[#E7D3B8]
+//                 overflow-hidden
 
-//                     shadow-[0_8px_30px_rgba(91,51,20,0.08)]
+//                 border
+//                 border-[#E7D3B8]
 
-//                     hover:border-[#C28B2C]
+//                 shadow-[0_8px_30px_rgba(91,51,20,0.08)]
 
-//                     hover:shadow-[0_18px_45px_rgba(91,51,20,0.16)]
+//                 hover:border-[#C28B2C]
 
-//                     md:hover:-translate-y-2
+//                 hover:shadow-[0_18px_45px_rgba(91,51,20,0.16)]
 
-//                     transition-all
-//                     duration-500
-//                   "
-//               >
-//                 {/* =================================================
-//                       IMAGE AREA
-//                   ================================================== */}
+//                 hover:-translate-y-2
 
-//                 <Link to={`/product/${item._id}`}>
-//                   <div
-//                     className="
-//                         relative
+//                 transition-all
+//                 duration-500
+//               "
+//             >
 
-//                         bg-gradient-to-br
-//                         from-[#F5E8D2]
-//                         via-[#EFE0C5]
-//                         to-[#E6CFAE]
+//               {/* =================================================
+//                   IMAGE AREA
+//               ================================================== */}
 
-//                         h-[155px]
-
-//                         sm:h-[210px]
-
-//                         md:h-[230px]
-
-//                         lg:h-[240px]
-
-//                         xl:h-[260px]
-
-//                         overflow-hidden
-//                       "
-//                   >
-//                     {/* PRODUCT IMAGE */}
-
-//                     <img
-//                       src={productImage}
-//                       alt={item.name}
-//                       className="
-//                           w-full
-//                           h-full
-
-//                           object-cover
-
-//                           transition-transform
-//                           duration-700
-
-//                           group-hover:scale-[1.08]
-//                         "
-//                     />
-
-//                     {/* SOFT IMAGE OVERLAY */}
-
-//                     <div
-//                       className="
-//                           absolute
-//                           inset-0
-
-//                           bg-gradient-to-t
-//                           from-[#5B3215]/15
-//                           via-transparent
-//                           to-white/10
-
-//                           pointer-events-none
-//                         "
-//                     />
-
-//                     {/* =================================================
-//                           BEST COLLECTION BADGE
-//                       ================================================== */}
-
-//                     <div
-//                       className="
-//                           absolute
-
-//                           top-2.5
-//                           left-2.5
-
-//                           sm:top-4
-//                           sm:left-4
-
-//                           bg-[#9B4D0D]
-
-//                           text-white
-
-//                           px-2
-//                           sm:px-3
-
-//                           py-1
-
-//                           rounded-full
-
-//                           text-[7px]
-//                           sm:text-[10px]
-
-//                           font-bold
-
-//                           uppercase
-
-//                           tracking-wide
-
-//                           shadow-md
-//                         "
-//                     >
-//                       Best Collection
-//                     </div>
-
-//                     {/* =================================================
-//                           IMAGE BOTTOM FADE
-//                       ================================================== */}
-
-//                     <div
-//                       className="
-//                           absolute
-//                           bottom-0
-//                           left-0
-//                           right-0
-
-//                           h-10
-
-//                           bg-gradient-to-t
-//                           from-black/10
-//                           to-transparent
-
-//                           pointer-events-none
-//                         "
-//                     />
-//                   </div>
-//                 </Link>
-
-//                 {/* =================================================
-//                       PRODUCT CONTENT
-//                   ================================================== */}
+//               <Link to={`/product/${item._id}`}>
 
 //                 <div
 //                   className="
-//                       relative
+//                     relative
 
-//                       px-3
-//                       sm:px-5
+//                     bg-gradient-to-br
+//                     from-[#F5E8D2]
+//                     via-[#EFE0C5]
+//                     to-[#E6CFAE]
 
-//                       pt-3.5
-//                       sm:pt-5
+//                     h-[185px]
 
-//                       pb-4
-//                       sm:pb-5
-//                     "
+//                     sm:h-[230px]
+
+//                     md:h-[230px]
+
+//                     lg:h-[240px]
+
+//                     xl:h-[260px]
+
+//                     overflow-hidden
+//                   "
 //                 >
-//                   {/* =================================================
-//                         CATEGORY
-//                     ================================================== */}
 
-//                   <p
+//                   {/* PRODUCT IMAGE */}
+
+//                   <img
+//                     src={item.image}
+//                     alt={item.name}
 //                     className="
-//                         uppercase
+//                       w-full
+//                       h-full
 
-//                         tracking-[1.3px]
+//                       object-cover
 
-//                         text-[7px]
-//                         sm:text-[10px]
+//                       transition-transform
+//                       duration-700
 
-//                         font-semibold
+//                       group-hover:scale-[1.08]
+//                     "
+//                   />
 
-//                         text-[#B77A24]
+//                   {/* SOFT OVERLAY */}
 
-//                         mb-1.5
-//                       "
+//                   <div
+//                     className="
+//                       absolute
+//                       inset-0
+
+//                       bg-gradient-to-t
+//                       from-[#5B3215]/10
+//                       via-transparent
+//                       to-white/10
+
+//                       pointer-events-none
+//                     "
+//                   />
+
+//                   {/* BEST COLLECTION BADGE */}
+
+//                   <div
+//                     className="
+//                       absolute
+
+//                       top-3
+//                       left-3
+
+//                       sm:top-4
+//                       sm:left-4
+
+//                       bg-[#9B4D0D]
+
+//                       text-white
+
+//                       px-2.5
+//                       sm:px-3
+
+//                       py-1
+
+//                       rounded-full
+
+//                       text-[8px]
+//                       sm:text-[10px]
+
+//                       font-bold
+
+//                       uppercase
+
+//                       tracking-wide
+
+//                       shadow-md
+//                     "
 //                   >
-//                     {item.category}
-//                   </p>
+//                     Best Collection
+//                   </div>
 
-//                   {/* =================================================
-//                         PRODUCT NAME
-//                     ================================================== */}
+//                 </div>
 
-//                   <Link to={`/product/${item._id}`}>
-//                     <h3
+//               </Link>
+
+//               {/* =================================================
+//                   CONTENT
+//               ================================================== */}
+
+//               <div
+//                 className="
+//                   relative
+
+//                   px-3
+//                   sm:px-5
+
+//                   pt-4
+//                   sm:pt-5
+
+//                   pb-4
+//                   sm:pb-5
+//                 "
+//               >
+
+//                 {/* CATEGORY */}
+
+//                 <p
+//                   className="
+//                     uppercase
+
+//                     tracking-[1.5px]
+
+//                     text-[8px]
+//                     sm:text-[10px]
+
+//                     font-semibold
+
+//                     text-[#B77A24]
+
+//                     mb-1.5
+//                   "
+//                 >
+//                   {item.category}
+//                 </p>
+
+//                 {/* PRODUCT NAME */}
+
+//                 <Link to={`/product/${item._id}`}>
+
+//                   <h3
+//                     className="
+//                       text-base
+
+//                       sm:text-lg
+
+//                       md:text-xl
+
+//                       lg:text-[22px]
+
+//                       font-bold
+
+//                       text-[#2B1408]
+
+//                       leading-tight
+
+//                       line-clamp-1
+
+//                       hover:text-[#9B4D0D]
+
+//                       transition-colors
+//                     "
+//                   >
+//                     {item.name}
+//                   </h3>
+
+//                 </Link>
+
+//                 {/* RATING */}
+
+//                 <div
+//                   className="
+//                     flex
+//                     items-center
+//                     gap-1.5
+
+//                     mt-2
+//                   "
+//                 >
+
+//                   <div className="flex gap-[1px]">
+
+//                     {[1, 2, 3, 4, 5].map(
+//                       (star) => (
+//                         <Star
+//                           key={star}
+//                           size={12}
+//                           className="
+//                             sm:w-[14px]
+//                             sm:h-[14px]
+
+//                             fill-[#E9A72E]
+//                             text-[#E9A72E]
+//                           "
+//                         />
+//                       ),
+//                     )}
+
+//                   </div>
+
+//                   <span
+//                     className="
+//                       text-[10px]
+//                       sm:text-xs
+
+//                       text-[#8A7566]
+
+//                       font-medium
+//                     "
+//                   >
+//                     4.8
+//                   </span>
+
+//                 </div>
+
+//                 {/* =================================================
+//                     PRICE + CART
+//                 ================================================== */}
+
+//                 <div
+//                   className="
+//                     flex
+//                     items-center
+//                     justify-between
+
+//                     mt-4
+//                     sm:mt-5
+//                   "
+//                 >
+
+//                   {/* PRICE */}
+
+//                   <div>
+
+//                     <div
 //                       className="
-//                           text-[14px]
+//                         inline-flex
+//                         items-baseline
 
-//                           sm:text-lg
+//                         gap-1
+//                       "
+//                     >
 
-//                           md:text-xl
+//                       <span
+//                         className="
+//                           text-lg
 
-//                           lg:text-[22px]
+//                           sm:text-xl
+
+//                           md:text-2xl
+
+//                           lg:text-[30px]
 
 //                           font-bold
 
-//                           text-[#2B1408]
-
-//                           leading-tight
-
-//                           line-clamp-1
-
-//                           hover:text-[#9B4D0D]
-
-//                           transition-colors
+//                           text-[#9B4D0D]
 //                         "
-//                     >
-//                       {item.name}
-//                     </h3>
-//                   </Link>
+//                       >
+//                         ₹{item.price}
+//                       </span>
 
-//                   {/* =================================================
-//                         RATING
-//                     ================================================== */}
-
-//                   <div
-//                     className="
-//                         flex
-//                         items-center
-//                         gap-1.5
-
-//                         mt-2
-//                       "
-//                   >
-//                     <div
-//                       className="
-//                           flex
-//                           gap-[1px]
-//                         "
-//                     >
-//                       {[1, 2, 3, 4, 5].map((star) => (
-//                         <Star
-//                           key={star}
-//                           size={11}
-//                           className="
-//                                 sm:w-[14px]
-//                                 sm:h-[14px]
-
-//                                 fill-[#E9A72E]
-
-//                                 text-[#E9A72E]
-//                               "
-//                         />
-//                       ))}
-//                     </div>
-
-//                     <span
-//                       className="
+//                       <span
+//                         className="
 //                           text-[9px]
+
 //                           sm:text-xs
 
 //                           text-[#8A7566]
-
-//                           font-medium
 //                         "
-//                     >
-//                       4.8
-//                     </span>
-//                   </div>
-
-//                   {/* =================================================
-//                         PRICE + CART
-//                     ================================================== */}
-
-//                   <div
-//                     className="
-//                         flex
-//                         items-center
-//                         justify-between
-
-//                         mt-3.5
-//                         sm:mt-5
-//                       "
-//                   >
-//                     {/* PRICE */}
-
-//                     <div>
-//                       <div
-//                         className="
-//                             inline-flex
-//                             items-baseline
-
-//                             gap-1
-//                           "
 //                       >
-//                         <span
-//                           className="
-//                               text-[17px]
+//                         / 250g
+//                       </span>
 
-//                               sm:text-xl
-
-//                               md:text-2xl
-
-//                               lg:text-[30px]
-
-//                               font-bold
-
-//                               text-[#9B4D0D]
-//                             "
-//                         >
-//                           ₹{item.price}
-//                         </span>
-
-//                         <span
-//                           className="
-//                               text-[8px]
-
-//                               sm:text-xs
-
-//                               text-[#8A7566]
-//                             "
-//                         >
-//                           / 250g
-//                         </span>
-//                       </div>
 //                     </div>
 
-//                     {/* CART BUTTON */}
-
-//                     <button
-//                       type="button"
-//                       onClick={() => {
-//                         addToCart(item);
-
-//                         toast.success("Item added to cart. Check your cart.");
-//                       }}
-//                       aria-label={`Add ${item.name} to cart`}
-//                       className="
-//                           w-9
-//                           h-9
-
-//                           sm:w-12
-//                           sm:h-12
-
-//                           rounded-full
-
-//                           bg-[#9B4D0D]
-
-//                           text-white
-
-//                           flex
-//                           items-center
-//                           justify-center
-
-//                           shadow-md
-
-//                           hover:bg-[#7A3A05]
-
-//                           hover:scale-110
-
-//                           active:scale-95
-
-//                           transition-all
-//                           duration-300
-//                         "
-//                     >
-//                       <ShoppingCart
-//                         size={15}
-//                         className="
-//                             sm:w-5
-//                             sm:h-5
-//                           "
-//                       />
-//                     </button>
 //                   </div>
+
+//                   {/* CART BUTTON */}
+
+//                   <button
+//                     type="button"
+//                     onClick={() => {
+//                       addToCart(item);
+
+//                       toast.success(
+//                         "Item added to cart. Check your cart.",
+//                       );
+//                     }}
+//                     aria-label={`Add ${item.name} to cart`}
+//                     className="
+//                       w-10
+//                       h-10
+
+//                       sm:w-12
+//                       sm:h-12
+
+//                       rounded-full
+
+//                       bg-[#9B4D0D]
+
+//                       text-white
+
+//                       flex
+//                       items-center
+//                       justify-center
+
+//                       shadow-md
+
+//                       hover:bg-[#7A3A05]
+
+//                       hover:scale-110
+
+//                       active:scale-95
+
+//                       transition-all
+//                       duration-300
+//                     "
+//                   >
+
+//                     <ShoppingCart
+//                       size={17}
+//                       className="
+//                         sm:w-5
+//                         sm:h-5
+//                       "
+//                     />
+
+//                   </button>
+
 //                 </div>
+
 //               </div>
-//             );
-//           })}
+
+//             </div>
+
+//           ))}
+
 //         </div>
 
 //         {/* =====================================================
@@ -662,23 +579,21 @@
 //             flex
 //             justify-center
 
-//             mt-10
-
+//             mt-9
 //             sm:mt-11
 
 //             md:hidden
 //           "
 //         >
+
 //           <Link
 //             to="/products"
 //             className="
 //               flex
 //               items-center
-//               justify-center
-
 //               gap-2
 
-//               px-7
+//               px-6
 //               py-3
 
 //               rounded-full
@@ -692,8 +607,6 @@
 
 //               font-semibold
 
-//               bg-white/40
-
 //               hover:bg-[#9B4D0D]
 
 //               hover:text-white
@@ -702,9 +615,13 @@
 //             "
 //           >
 //             View All Products
+
 //             <ArrowUpRight size={16} />
+
 //           </Link>
+
 //         </div>
+
 //       </div>
 //     </section>
 //   );
@@ -712,122 +629,46 @@
 
 // export default BestSellers;
 
-
 import React, { useContext, useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
-import {
-  ShoppingCart,
-  Star,
-  ArrowUpRight,
-} from "lucide-react";
+
+import { ShoppingCart, Star, ArrowUpRight } from "lucide-react";
+
 import axios from "axios";
+
 import { CartContext } from "../context/CartContext";
+
 import toast from "react-hot-toast";
 
 function BestSellers() {
   const { addToCart } = useContext(CartContext);
 
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   // =====================================================
-  // FETCH BEST SELLERS
+  // FETCH PRODUCTS
   // =====================================================
 
   useEffect(() => {
-    const fetchBestSellers = async () => {
+    const fetchProducts = async () => {
       try {
-        setLoading(true);
-
         const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/products/bestsellers`
+          `${import.meta.env.VITE_API_URL}/api/products`,
         );
 
-        setProducts(data);
+        const bestProducts = data
+          .filter((item) => item.isBestSeller)
+          .slice(0, 8);
+
+        setProducts(bestProducts);
       } catch (error) {
-        console.error("Best Sellers Error:", error);
-
-        toast.error("Unable to load products");
-
-        setProducts([]);
-      } finally {
-        setLoading(false);
+        console.log("Best Sellers Error:", error);
       }
     };
 
-    fetchBestSellers();
+    fetchProducts();
   }, []);
-
-  // =====================================================
-  // LOADING SKELETON
-  // =====================================================
-
-  const SkeletonCard = () => {
-    return (
-      <div
-        className="
-          bg-[#FFF9F0]
-          rounded-[22px]
-          sm:rounded-[26px]
-          md:rounded-[28px]
-          overflow-hidden
-          border
-          border-[#E7D3B8]
-          animate-pulse
-        "
-      >
-        {/* IMAGE */}
-        <div
-          className="
-            h-[155px]
-            sm:h-[210px]
-            md:h-[230px]
-            lg:h-[240px]
-            xl:h-[260px]
-            bg-[#E8DCC8]
-          "
-        />
-
-        {/* CONTENT */}
-        <div
-          className="
-            px-3
-            sm:px-5
-            pt-3.5
-            sm:pt-5
-            pb-4
-            sm:pb-5
-          "
-        >
-          {/* CATEGORY */}
-          <div className="h-2.5 w-16 bg-[#E4D5C0] rounded mb-3" />
-
-          {/* NAME */}
-          <div className="h-5 w-3/4 bg-[#E4D5C0] rounded" />
-
-          {/* RATING */}
-          <div className="flex gap-1 mt-3">
-            <div className="h-3 w-3 bg-[#E4D5C0] rounded" />
-            <div className="h-3 w-3 bg-[#E4D5C0] rounded" />
-            <div className="h-3 w-3 bg-[#E4D5C0] rounded" />
-            <div className="h-3 w-3 bg-[#E4D5C0] rounded" />
-            <div className="h-3 w-3 bg-[#E4D5C0] rounded" />
-          </div>
-
-          {/* PRICE */}
-          <div className="flex items-center justify-between mt-5">
-            <div className="h-7 w-20 bg-[#E4D5C0] rounded" />
-
-            <div className="w-9 h-9 sm:w-12 sm:h-12 bg-[#E4D5C0] rounded-full" />
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  // =====================================================
-  // RENDER
-  // =====================================================
 
   return (
     <section
@@ -840,12 +681,12 @@ function BestSellers() {
         md:px-10
         lg:px-12
 
-        pt-8
-        sm:pt-12
-        md:pt-24
+       pt-12
+sm:pt-10
+md:pt-20
 
-        pb-16
-        sm:pb-16
+        pb-12
+        sm:pb-12
         md:pb-24
 
         overflow-hidden
@@ -881,8 +722,11 @@ function BestSellers() {
               TITLE + DESCRIPTION
           ====================================================== */}
 
-          <div className="w-full">
-
+          <div
+            className="
+              w-full
+            "
+          >
             {/* SMALL DECORATIVE LINE */}
 
             <div
@@ -891,7 +735,6 @@ function BestSellers() {
                 items-center
                 justify-center
                 md:justify-start
-
                 gap-2
                 mb-3
               "
@@ -948,7 +791,11 @@ function BestSellers() {
               "
             >
               Our{" "}
-              <span className="text-[#9B4D0D]">
+              <span
+                className="
+                  text-[#9B4D0D]
+                "
+              >
                 Products
               </span>
             </h2>
@@ -958,6 +805,7 @@ function BestSellers() {
             <p
               className="
                 mt-4
+
                 sm:mt-4
 
                 max-w-[320px]
@@ -978,8 +826,8 @@ function BestSellers() {
                 md:text-left
               "
             >
-              Handpicked favourites, packed fresh and delivered
-              straight to your doorstep.
+              Handpicked favourites, packed fresh and delivered straight to your
+              doorstep.
             </p>
           </div>
 
@@ -1025,6 +873,7 @@ function BestSellers() {
         <div
           className="
             grid
+
             grid-cols-2
 
             md:grid-cols-3
@@ -1042,30 +891,14 @@ function BestSellers() {
             lg:gap-7
           "
         >
-          {/* =====================================================
-              LOADING
-          ====================================================== */}
+          {products.map((item) => {
+            const productImage =
+              item.images?.length > 0 ? item.images[0] : item.image;
 
-          {loading &&
-            Array.from({ length: 8 }).map((_, index) => (
-              <SkeletonCard key={index} />
-            ))}
-
-          {/* =====================================================
-              PRODUCTS
-          ====================================================== */}
-
-          {!loading &&
-            products.map((item) => {
-              const productImage =
-                item.images?.length > 0
-                  ? item.images[0]
-                  : item.image;
-
-              return (
-                <div
-                  key={item._id}
-                  className="
+            return (
+              <div
+                key={item._id}
+                className="
                     group
                     relative
 
@@ -1091,14 +924,14 @@ function BestSellers() {
                     transition-all
                     duration-500
                   "
-                >
-                  {/* =================================================
+              >
+                {/* =================================================
                       IMAGE AREA
                   ================================================== */}
 
-                  <Link to={`/product/${item._id}`}>
-                    <div
-                      className="
+                <Link to={`/product/${item._id}`}>
+                  <div
+                    className="
                         relative
 
                         bg-gradient-to-br
@@ -1107,22 +940,24 @@ function BestSellers() {
                         to-[#E6CFAE]
 
                         h-[155px]
+
                         sm:h-[210px]
+
                         md:h-[230px]
+
                         lg:h-[240px]
+
                         xl:h-[260px]
 
                         overflow-hidden
                       "
-                    >
-                      {/* PRODUCT IMAGE */}
+                  >
+                    {/* PRODUCT IMAGE */}
 
-                      <img
-                        src={productImage}
-                        alt={item.name}
-                        loading="lazy"
-                        decoding="async"
-                        className="
+                    <img
+                      src={productImage}
+                      alt={item.name}
+                      className="
                           w-full
                           h-full
 
@@ -1133,12 +968,12 @@ function BestSellers() {
 
                           group-hover:scale-[1.08]
                         "
-                      />
+                    />
 
-                      {/* SOFT IMAGE OVERLAY */}
+                    {/* SOFT IMAGE OVERLAY */}
 
-                      <div
-                        className="
+                    <div
+                      className="
                           absolute
                           inset-0
 
@@ -1149,14 +984,14 @@ function BestSellers() {
 
                           pointer-events-none
                         "
-                      />
+                    />
 
-                      {/* =================================================
+                    {/* =================================================
                           BEST COLLECTION BADGE
                       ================================================== */}
 
-                      <div
-                        className="
+                    <div
+                      className="
                           absolute
 
                           top-2.5
@@ -1187,14 +1022,16 @@ function BestSellers() {
 
                           shadow-md
                         "
-                      >
-                        Best Collection
-                      </div>
+                    >
+                      Best Collection
+                    </div>
 
-                      {/* IMAGE BOTTOM FADE */}
+                    {/* =================================================
+                          IMAGE BOTTOM FADE
+                      ================================================== */}
 
-                      <div
-                        className="
+                    <div
+                      className="
                           absolute
                           bottom-0
                           left-0
@@ -1208,16 +1045,16 @@ function BestSellers() {
 
                           pointer-events-none
                         "
-                      />
-                    </div>
-                  </Link>
+                    />
+                  </div>
+                </Link>
 
-                  {/* =================================================
+                {/* =================================================
                       PRODUCT CONTENT
                   ================================================== */}
 
-                  <div
-                    className="
+                <div
+                  className="
                       relative
 
                       px-3
@@ -1229,11 +1066,13 @@ function BestSellers() {
                       pb-4
                       sm:pb-5
                     "
-                  >
-                    {/* CATEGORY */}
+                >
+                  {/* =================================================
+                        CATEGORY
+                    ================================================== */}
 
-                    <p
-                      className="
+                  <p
+                    className="
                         uppercase
 
                         tracking-[1.3px]
@@ -1247,15 +1086,17 @@ function BestSellers() {
 
                         mb-1.5
                       "
-                    >
-                      {item.category}
-                    </p>
+                  >
+                    {item.category}
+                  </p>
 
-                    {/* PRODUCT NAME */}
+                  {/* =================================================
+                        PRODUCT NAME
+                    ================================================== */}
 
-                    <Link to={`/product/${item._id}`}>
-                      <h3
-                        className="
+                  <Link to={`/product/${item._id}`}>
+                    <h3
+                      className="
                           text-[14px]
 
                           sm:text-lg
@@ -1276,45 +1117,48 @@ function BestSellers() {
 
                           transition-colors
                         "
-                      >
-                        {item.name}
-                      </h3>
-                    </Link>
+                    >
+                      {item.name}
+                    </h3>
+                  </Link>
 
-                    {/* RATING */}
+                  {/* =================================================
+                        RATING
+                    ================================================== */}
 
-                    <div
-                      className="
+                  <div
+                    className="
                         flex
                         items-center
                         gap-1.5
 
                         mt-2
                       "
-                    >
-                      <div
-                        className="
+                  >
+                    <div
+                      className="
                           flex
                           gap-[1px]
                         "
-                      >
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <Star
-                            key={star}
-                            size={11}
-                            className="
-                              sm:w-[14px]
-                              sm:h-[14px]
+                    >
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <Star
+                          key={star}
+                          size={11}
+                          className="
+                                sm:w-[14px]
+                                sm:h-[14px]
 
-                              fill-[#E9A72E]
-                              text-[#E9A72E]
-                            "
-                          />
-                        ))}
-                      </div>
+                                fill-[#E9A72E]
 
-                      <span
-                        className="
+                                text-[#E9A72E]
+                              "
+                        />
+                      ))}
+                    </div>
+
+                    <span
+                      className="
                           text-[9px]
                           sm:text-xs
 
@@ -1322,15 +1166,17 @@ function BestSellers() {
 
                           font-medium
                         "
-                      >
-                        4.8
-                      </span>
-                    </div>
+                    >
+                      4.8
+                    </span>
+                  </div>
 
-                    {/* PRICE + CART */}
+                  {/* =================================================
+                        PRICE + CART
+                    ================================================== */}
 
-                    <div
-                      className="
+                  <div
+                    className="
                         flex
                         items-center
                         justify-between
@@ -1338,20 +1184,20 @@ function BestSellers() {
                         mt-3.5
                         sm:mt-5
                       "
-                    >
-                      {/* PRICE */}
+                  >
+                    {/* PRICE */}
 
-                      <div>
-                        <div
-                          className="
+                    <div>
+                      <div
+                        className="
                             inline-flex
                             items-baseline
 
                             gap-1
                           "
-                        >
-                          <span
-                            className="
+                      >
+                        <span
+                          className="
                               text-[17px]
 
                               sm:text-xl
@@ -1364,37 +1210,35 @@ function BestSellers() {
 
                               text-[#9B4D0D]
                             "
-                          >
-                            ₹{item.price}
-                          </span>
+                        >
+                          ₹{item.price}
+                        </span>
 
-                          <span
-                            className="
+                        <span
+                          className="
                               text-[8px]
 
                               sm:text-xs
 
                               text-[#8A7566]
                             "
-                          >
-                            / 250g
-                          </span>
-                        </div>
+                        >
+                          / 250g
+                        </span>
                       </div>
+                    </div>
 
-                      {/* CART BUTTON */}
+                    {/* CART BUTTON */}
 
-                      <button
-                        type="button"
-                        onClick={() => {
-                          addToCart(item);
+                    <button
+                      type="button"
+                      onClick={() => {
+                        addToCart(item);
 
-                          toast.success(
-                            "Item added to cart. Check your cart."
-                          );
-                        }}
-                        aria-label={`Add ${item.name} to cart`}
-                        className="
+                        toast.success("Item added to cart. Check your cart.");
+                      }}
+                      aria-label={`Add ${item.name} to cart`}
+                      className="
                           w-9
                           h-9
 
@@ -1422,37 +1266,21 @@ function BestSellers() {
                           transition-all
                           duration-300
                         "
-                      >
-                        <ShoppingCart
-                          size={15}
-                          className="
+                    >
+                      <ShoppingCart
+                        size={15}
+                        className="
                             sm:w-5
                             sm:h-5
                           "
-                        />
-                      </button>
-                    </div>
+                      />
+                    </button>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            );
+          })}
         </div>
-
-        {/* =====================================================
-            NO PRODUCTS
-        ====================================================== */}
-
-        {!loading && products.length === 0 && (
-          <div
-            className="
-              text-center
-              py-12
-              text-[#8A7566]
-            "
-          >
-            No products available right now.
-          </div>
-        )}
 
         {/* =====================================================
             MOBILE VIEW ALL
@@ -1464,6 +1292,7 @@ function BestSellers() {
             justify-center
 
             mt-10
+
             sm:mt-11
 
             md:hidden
