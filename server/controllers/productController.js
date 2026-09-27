@@ -20,6 +20,27 @@ const getProducts = async (req, res) => {
   }
 };
 
+
+const getBestSellers = async (req, res) => {
+  try {
+    const products = await Product.find({
+      isBestSeller: true,
+    })
+      .select("name description price stock category image images isBestSeller")
+      .sort({ createdAt: -1 })
+      .limit(8)
+      .lean();
+
+    res.status(200).json(products);
+  } catch (error) {
+    console.error("Get Best Sellers Error:", error);
+
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
 // =====================================================
 // CREATE PRODUCT
 // =====================================================
@@ -245,6 +266,7 @@ const updateProduct = async (req, res) => {
 
 module.exports = {
   getProducts,
+  getBestSellers,
   createProduct,
   deleteProduct,
   getSingleProduct,
