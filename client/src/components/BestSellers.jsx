@@ -1,5 +1,3 @@
-
-
 // import React, { useContext, useEffect, useState } from "react";
 
 // import { Link } from "react-router-dom";
@@ -712,14 +710,9 @@
 
 // export default BestSellers;
 
-
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  ShoppingCart,
-  Star,
-  ArrowUpRight,
-} from "lucide-react";
+import { ShoppingCart, Star, ArrowUpRight } from "lucide-react";
 import axios from "axios";
 import { CartContext } from "../context/CartContext";
 import toast from "react-hot-toast";
@@ -740,7 +733,7 @@ function BestSellers() {
         setLoading(true);
 
         const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/products/bestsellers`
+          `${import.meta.env.VITE_API_URL}/api/products/bestsellers`,
         );
 
         setProducts(Array.isArray(data) ? data : []);
@@ -954,7 +947,6 @@ function BestSellers() {
           ====================================================== */}
 
           <div className="w-full">
-
             {/* SMALL DECORATIVE LINE */}
 
             <div
@@ -1028,10 +1020,7 @@ function BestSellers() {
                 md:text-left
               "
             >
-              Our{" "}
-              <span className="text-[#9B4D0D]">
-                Products
-              </span>
+              Our <span className="text-[#9B4D0D]">Products</span>
             </h2>
 
             {/* DESCRIPTION */}
@@ -1060,8 +1049,8 @@ function BestSellers() {
                 md:text-left
               "
             >
-              Handpicked favourites, packed fresh and delivered
-              straight to your doorstep.
+              Handpicked favourites, packed fresh and delivered straight to your
+              doorstep.
             </p>
           </div>
 
@@ -1097,7 +1086,6 @@ function BestSellers() {
             "
           >
             View All Products
-
             <ArrowUpRight size={18} />
           </Link>
         </div>
@@ -1143,9 +1131,7 @@ function BestSellers() {
           {!loading &&
             products.map((item) => {
               const productImage =
-                item.images?.length > 0
-                  ? item.images[0]
-                  : item.image;
+                item.images?.length > 0 ? item.images[0] : item.image;
 
               return (
                 <div
@@ -1485,9 +1471,7 @@ function BestSellers() {
                         onClick={() => {
                           addToCart(item);
 
-                          toast.success(
-                            "Item added to cart. Check your cart."
-                          );
+                          toast.success("Item added to cart. Check your cart.");
                         }}
                         aria-label={`Add ${item.name} to cart`}
                         className="
@@ -1601,7 +1585,6 @@ function BestSellers() {
             "
           >
             View All Products
-
             <ArrowUpRight size={16} />
           </Link>
         </div>
