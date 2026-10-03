@@ -1,13 +1,10 @@
-
-import React, {
-  useEffect,
-  useState,
-  useContext,
-} from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import { Link } from "react-router-dom";
 
-import logo from "../assets/farmhillss.png";
+// import logo from "../assets/farmhillss.png";
+
+import logo from "../assets/farmhills-mobile-logo.png";
 
 import {
   ShoppingBag,
@@ -38,7 +35,7 @@ function Navbar() {
 
   const totalItems = cartItems.reduce(
     (total, item) => total + item.quantity,
-    0
+    0,
   );
 
   // =====================================================
@@ -63,25 +60,15 @@ function Navbar() {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        !event.target.closest(
-          ".profile-dropdown-container"
-        )
-      ) {
+      if (!event.target.closest(".profile-dropdown-container")) {
         setProfileOpen(false);
       }
     };
 
-    document.addEventListener(
-      "mousedown",
-      handleClickOutside
-    );
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener(
-        "mousedown",
-        handleClickOutside
-      );
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -100,16 +87,10 @@ function Navbar() {
 
     updateBottomPadding();
 
-    window.addEventListener(
-      "resize",
-      updateBottomPadding
-    );
+    window.addEventListener("resize", updateBottomPadding);
 
     return () => {
-      window.removeEventListener(
-        "resize",
-        updateBottomPadding
-      );
+      window.removeEventListener("resize", updateBottomPadding);
 
       document.body.style.paddingBottom = "0px";
     };
@@ -151,11 +132,7 @@ function Navbar() {
           transition-all
           duration-300
 
-          ${
-            isScrolled
-              ? "fixed top-0 left-0 shadow-lg"
-              : "relative"
-          }
+          ${isScrolled ? "fixed top-0 left-0 shadow-lg" : "relative"}
         `}
       >
         {/* ===================================================
@@ -193,11 +170,7 @@ function Navbar() {
             <button
               type="button"
               onClick={() => setMenuOpen(!menuOpen)}
-              aria-label={
-                menuOpen
-                  ? "Close menu"
-                  : "Open menu"
-              }
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
               className="
                 w-9
                 h-9
@@ -215,11 +188,7 @@ function Navbar() {
                 transition
               "
             >
-              {menuOpen ? (
-                <X size={24} />
-              ) : (
-                <Menu size={24} />
-              )}
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
 
             {/* SEARCH */}
@@ -252,52 +221,30 @@ function Navbar() {
           {/* =================================================
               CENTER LOGO
           ================================================== */}
-
           <Link
             to="/"
             onClick={closeMobileMenu}
             className="
-              absolute
-              left-1/2
-              -translate-x-1/2
+    absolute
+    left-1/2
+    top-1/2
+    -translate-x-1/2
+    -translate-y-1/2
 
-              top-1/2
-              -translate-y-1/2
-
-              flex
-              flex-col
-              items-center
-              justify-center
-            "
+    flex
+    items-center
+    justify-center
+  "
           >
             <img
               src={logo}
-              alt="FarmHills"
+              alt="FarmHills Premium Dry Fruits"
               className="
-                w-[42px]
-                h-[42px]
-
-                object-contain
-
-                rounded-full
-              "
+      w-[125px]
+      h-[100px]
+      object-contain
+    "
             />
-
-            <span
-              className="
-                text-[9px]
-
-                font-bold
-
-                text-[#9B4D0D]
-
-                leading-none
-
-                mt-[1px]
-              "
-            >
-              FarmHills
-            </span>
           </Link>
 
           {/* =================================================
@@ -364,10 +311,7 @@ function Navbar() {
                 transition
               "
             >
-              <ShoppingBag
-                size={22}
-                strokeWidth={1.9}
-              />
+              <ShoppingBag size={22} strokeWidth={1.9} />
 
               {totalItems > 0 && (
                 <span
@@ -607,9 +551,7 @@ function Navbar() {
                 <div className="relative profile-dropdown-container">
                   <button
                     type="button"
-                    onClick={() =>
-                      setProfileOpen(!profileOpen)
-                    }
+                    onClick={() => setProfileOpen(!profileOpen)}
                     className="
                       flex
                       items-center
@@ -654,9 +596,7 @@ function Navbar() {
                         justify-center
                       "
                     >
-                      <CircleUserRound
-                        size={21}
-                      />
+                      <CircleUserRound size={21} />
                     </div>
                   </button>
 
@@ -719,9 +659,7 @@ function Navbar() {
                               justify-center
                             "
                           >
-                            <CircleUserRound
-                              size={26}
-                            />
+                            <CircleUserRound size={26} />
                           </div>
 
                           <div className="min-w-0">
@@ -752,9 +690,7 @@ function Navbar() {
                       <div className="flex flex-col">
                         <Link
                           to="/my-orders"
-                          onClick={() =>
-                            setProfileOpen(false)
-                          }
+                          onClick={() => setProfileOpen(false)}
                           className="
                             flex
                             items-center
@@ -770,19 +706,13 @@ function Navbar() {
                             transition
                           "
                         >
-                          <Package
-                            size={20}
-                            className="text-[#9B4D0D]"
-                          />
-
+                          <Package size={20} className="text-[#9B4D0D]" />
                           My Orders
                         </Link>
 
                         <Link
                           to="/contact"
-                          onClick={() =>
-                            setProfileOpen(false)
-                          }
+                          onClick={() => setProfileOpen(false)}
                           className="
                             px-6
                             py-4
@@ -985,7 +915,6 @@ function Navbar() {
               {/* LINKS */}
 
               <div className="p-3">
-
                 <Link
                   to="/"
                   onClick={closeMobileMenu}
@@ -1011,10 +940,7 @@ function Navbar() {
                   "
                 >
                   Home
-
-                  <span className="text-[#9B4D0D]">
-                    →
-                  </span>
+                  <span className="text-[#9B4D0D]">→</span>
                 </Link>
 
                 <Link
@@ -1042,10 +968,7 @@ function Navbar() {
                   "
                 >
                   Shop
-
-                  <span className="text-[#9B4D0D]">
-                    →
-                  </span>
+                  <span className="text-[#9B4D0D]">→</span>
                 </Link>
 
                 <Link
@@ -1073,10 +996,7 @@ function Navbar() {
                   "
                 >
                   About
-
-                  <span className="text-[#9B4D0D]">
-                    →
-                  </span>
+                  <span className="text-[#9B4D0D]">→</span>
                 </Link>
 
                 <Link
@@ -1104,10 +1024,7 @@ function Navbar() {
                   "
                 >
                   Contact
-
-                  <span className="text-[#9B4D0D]">
-                    →
-                  </span>
+                  <span className="text-[#9B4D0D]">→</span>
                 </Link>
               </div>
 
@@ -1153,9 +1070,7 @@ function Navbar() {
                           shrink-0
                         "
                       >
-                        <CircleUserRound
-                          size={19}
-                        />
+                        <CircleUserRound size={19} />
                       </div>
 
                       <div className="min-w-0">

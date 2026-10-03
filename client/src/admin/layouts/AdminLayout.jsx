@@ -1,23 +1,61 @@
+import React from "react";
+import { Outlet } from "react-router-dom";
+
 import Sidebar from "../component/Sidebar";
 import Topbar from "../component/Topbar";
-import { Outlet } from "react-router-dom";
-import React from "react";
 
 const AdminLayout = () => {
   return (
-    <div className="flex">
+    <div className="min-h-screen w-full bg-gray-100 flex">
+
+      {/* =====================================================
+          SIDEBAR
+      ====================================================== */}
 
       <Sidebar />
 
-      <div className="flex-1 bg-gray-100 min-h-screen">
+      {/* =====================================================
+          MAIN CONTENT
+      ====================================================== */}
 
-        <Topbar />
+      <main
+        className="
+          flex-1
+          min-w-0
+          min-h-screen
+          bg-gray-100
+        "
+      >
 
-        <div className="p-5">
-          <Outlet />
+        {/* =================================================
+            DESKTOP TOPBAR ONLY
+        ================================================== */}
+
+        <div className="hidden md:block">
+          <Topbar />
         </div>
 
-      </div>
+        {/* =================================================
+            MOBILE HEADER SPACE
+        ================================================== */}
+
+        <div className="pt-16 md:pt-0">
+
+          <div
+            className="
+              w-full
+              min-w-0
+              p-3
+              sm:p-5
+              md:p-5
+            "
+          >
+            <Outlet />
+          </div>
+
+        </div>
+
+      </main>
     </div>
   );
 };
