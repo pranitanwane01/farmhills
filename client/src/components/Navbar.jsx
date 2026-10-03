@@ -379,91 +379,36 @@ function Navbar() {
                 DESKTOP LOGO
             ================================================== */}
 
-            <Link
-              to="/"
-              className="
-                flex
-                items-center
-                gap-2
-                sm:gap-3
-              "
-            >
-              <div
-                className="
-                  w-11
-                  h-11
+  {/* =================================================
+    DESKTOP LOGO
+================================================== */}
 
-                  sm:w-14
-                  sm:h-14
+<Link
+  to="/"
+  className="
+    flex
+    items-center
+    justify-center
+    shrink-0
+  "
+>
+  <img
+    src={logo}
+    alt="FarmHills Premium Dry Fruits"
+    className="
+      w-[150px]
+      h-[70px]
 
-                  md:w-16
-                  md:h-16
+      object-contain
 
-                  rounded-full
+      sm:w-[165px]
+      sm:h-[72px]
 
-                  overflow-hidden
-
-                  flex
-                  items-center
-                  justify-center
-
-                  bg-[#EFE2C8]
-
-                  shrink-0
-                "
-              >
-                <img
-                  src={logo}
-                  alt="FarmHills Logo"
-                  className="
-                    w-full
-                    h-full
-
-                    object-contain
-
-                    scale-[1.08]
-
-                    mix-blend-multiply
-                  "
-                />
-              </div>
-
-              <div>
-                <h1
-                  className="
-                    text-xl
-                    sm:text-2xl
-                    md:text-3xl
-
-                    font-bold
-
-                    text-[#9B4D0D]
-
-                    leading-none
-                  "
-                >
-                  FarmHills
-                </h1>
-
-                <p
-                  className="
-                    text-[8px]
-                    sm:text-[10px]
-                    md:text-sm
-
-                    tracking-[2px]
-                    sm:tracking-[3px]
-                    md:tracking-[4px]
-
-                    text-[#7B6252]
-
-                    mt-1
-                  "
-                >
-                  PREMIUM DRY FRUITS
-                </p>
-              </div>
-            </Link>
+      md:w-[180px]
+      md:h-[78px]
+    "
+  />
+</Link>
 
             {/* =================================================
                 DESKTOP LINKS
